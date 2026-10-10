@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FaqList from '../components/FaqList.astro';
+import faq from '../data/FAQ.json';
+import { site } from '../data/site.js';
+
+const forms = [
+  ['Consent form for anesthesia services', 'Anesthesia Consent.pdf'],
+  ['Consent form for anesthesia services (Spanish)', 'Anesthesia Consent (Spanish).pdf'],
+  ['Patient rights and responsibilities', 'Patient_Rights_and_Responsibilities.pdf'],
+  ['No Surprises Act billing disclosure', 'PSA - No Surprises Disclosure.pdf'],
+  ['Notification of ownership and advance directives', 'Notification_of_Ownership_and_Advance_Directives.pdf'],
+  ['Birth control interaction with sugammadex (Bridion®) and aprepitant (Emend®): discharge information for female patients', 'Birth Control - Sugammadex Aprepitant - Patient Handout.pdf'],
+  ['Obstructive sleep apnea: educational brochure', 'Obstructive Sleep Apnea Brochure Final 3-7-2019.pdf'],
+  ['Safeguarding your surgery: the role of your anesthesiologist', 'safeguardingyoursurgery.pdf'],
+];
+
+const records = [
+  ["Emory Saint Joseph's Hospital", 'https://www.emoryhealthcare.org/patients-visitors/medical-records.html', '678-843-7001'],
+  ['Resurgens Orthopaedics', 'https://cdn.dynamixse.com/resurgenscom/resurgenscom_951871369.pdf', '404-531-8532'],
+  ['Resurgens Orthopaedics, Lawrenceville', 'https://www.resurgens.com/orthopedics-lawrenceville-ga', '770-962-4300'],
+  ['Northwest ENT and Allergy Center', 'https://nw-ent.com/locations', '770-427-0368'],
+  ['Metro Atlanta Gastroenterology and Endoscopy Center', 'https://www.metroatlantagastro.com/gastroenterology-center/endoscopy-center/', '404-369-5011'],
+];
+
+const helpful = [
+  ['"When Seconds Count" patient education from Safe Anesthesia', 'https://www.safeanesthesia.com/when-seconds-count/'],
+  ["Emory Saint Joseph's Hospital", 'https://www.emoryhealthcare.org/locations/hospitals/emory-saint-josephs-hospital/'],
+  ['Resurgens Orthopaedics', 'https://www.resurgens.com/orthopedics-in-sandy-springs'],
+  ['Resurgens Orthopaedics, Lawrenceville', 'https://www.resurgens.com/orthopedics-lawrenceville-ga'],
+  ['Northwest ENT and Allergy Center', 'https://www.nw-ent.com/'],
+  ['Metro Atlanta Gastroenterology', 'https://www.metroatlantagastro.com/'],
+  ['Georgia Composite Medical Board', 'https://medicalboard.georgia.gov/'],
+];
+
+const tel = (n) => `tel:+1${n.replace(/\D/g, '')}`;
+const pdf = (file) => `/patient_forms/${encodeURIComponent(file)}`;
+---
+<Base title="Patient information" description="Pay your anesthesia bill, download forms, and learn what to expect from anesthesia with Physician Specialists in Anesthesia.">
+  <PageHeader
+    title="Information for patients"
+    intro="Your surgeon is not the only physician caring for you. An anesthesiologist leads the team that keeps you safe and comfortable before, during and after your procedure."
+  >
+    <nav class="jump" aria-label="On this page">
+      <ul>
+        <li><a href="#billing">Billing and records</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#faq">Common questions</a></li>
+        <li><a href="#helpful_links">Helpful links</a></li>
+      </ul>
+    </nav>
+  </PageHeader>
+
+  <section class="section">
+    <div class="wrap split">
+      <h2>Your anesthesia team</h2>
+      <div class="measure">
+        <p>
+          If you're planning to have surgery, an entire team of physicians, nurses and other medical
+          professionals will work together to make sure your surgery and recovery are safe and
+          successful.
+        </p>
+        <p>
+          One of the key members of that team is the anesthesiologist, a medical doctor who specializes
+          in anesthesia, pain management and critical care medicine. This physician leads the
+          anesthesia care team, which may include advanced practice providers, nurse anesthetists and
+          anesthesiologist assistants who guide you through your entire surgical experience. This
+          physician leadership best ensures safe, high-quality, high-value care.
+        </p>
+        <p>
+          You will meet your anesthesiologist on the day of surgery, and we encourage you to bring a
+          family member to the preoperative area with you. Be sure to share your health conditions and
+          any concerns, since this is vital to your safety and comfort.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="billing" class="section section--mist">
+    <div class="wrap split">
+      <h2>Billing and medical records</h2>
+      <div class="measure">
+        <div class="pay">
+          <div>
+            <h3>Pay your bill online</h3>
+            <p>Our billing partner, Abeo, processes payments for PSA through a secure website.</p>
+          </div>
+          <a class="btn" href={site.payBill} target="_blank" rel="noopener">Pay a bill</a>
+        </div>
+
+        <h3>Billing questions</h3>
+        <dl class="billing">
+          <dt>Services on or after September 1, 2016</dt>
+          <dd>Abeo Management Corporation, <a href="tel:+18009191190">1-800-919-1190</a></dd>
+          <dt>Services before September 1, 2016</dt>
+          <dd>First Coast Billing, <a href="tel:+19043962342">904-396-2342</a> or <a href="http://www.firstcoastbillinggroup.com/" target="_blank" rel="noopener">firstcoastbillinggroup.com</a></dd>
+          <dt>Anything else</dt>
+          <dd>Call our business office at <a href={site.phoneHref}>{site.phone}</a></dd>
+        </dl>
+
+        <h3>Medical records</h3>
+        <p>Request medical records from the facility where your procedure was performed.</p>
+        <ul class="linklist">
+          {records.map(([name, href, phone]) => (
+            <li class="record">
+              <div class="row">
+                <a href={href} target="_blank" rel="noopener">{name}</a>
+                <a class="hint" href={tel(phone)}>{phone}</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="forms" class="section">
+    <div class="wrap split">
+      <h2>Forms and documents</h2>
+      <div class="measure">
+        <ul class="linklist">
+          {forms.map(([label, file]) => (
+            <li><a href={pdf(file)} target="_blank"><span>{label}</span><span class="hint">PDF</span></a></li>
+          ))}
+        </ul>
+        <p class="small muted">Have sleep apnea? Read <a href="/osa">sleep apnea and surgery</a> before your procedure.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mist">
+    <div class="wrap split">
+      <h2>Common questions</h2>
+      <div class="measure">
+        <FaqList id="faq" items={faq} />
+      </div>
+    </div>
+  </section>
+
+  <section id="helpful_links" class="section">
+    <div class="wrap split">
+      <h2>Helpful links</h2>
+      <div class="measure">
+        <ul class="linklist">
+          {helpful.map(([label, href]) => (
+            <li><a href={href} target="_blank" rel="noopener"><span>{label}</span></a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .jump { margin-top: 2rem; }
+  .jump ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+  .jump li { margin: 0; }
+  .jump a { font-weight: 550; }
+
+  .pay {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem;
+    background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--blue);
+    border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2.5rem;
+  }
+  .pay h3 { margin-bottom: 0.3rem; }
+  .pay p { margin: 0; color: var(--muted); }
+  .billing { margin-bottom: 2.5rem; }
+  .billing dt { font-weight: 650; margin-top: 1rem; }
+  .billing dt:first-child { margin-top: 0; }
+  .billing dd { margin: 0.2rem 0 0; }
+  .record .row a { display: inline; padding: 0; background: none; }
+  .record .row a:first-child { color: var(--blue); }
+  .record .row { padding: 0.85rem 0.25rem; }
+  .linklist .record a.hint { color: var(--muted); padding: 0; }
+  .linklist a span:first-child { color: var(--blue); }
+</style>

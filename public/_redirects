@@ -1,0 +1,5 @@
+# Old typo'd folder name used by some links on the previous site
+/patientforms/*   /patient_forms/:splat   301
+
+# Carried over from the previous site (only applies if this subdomain points at this Netlify site)
+https://sharepoint.psa-online.net/*  https://aro365764433.sharepoint.com/sites/Clinical-References  301!

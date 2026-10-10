@@ -1,0 +1,49 @@
+---
+// A capnography trace — the breathing waveform an anesthesia team watches on
+// every patient. Used as the site's one recurring visual motif.
+interface Props { animate?: boolean; class?: string; }
+const { animate = false, class: className = '' } = Astro.props;
+
+// Build a few breaths: flat baseline, quick rise, gently sloping plateau, quick fall.
+let d = 'M0 48 H24';
+let x = 24;
+for (let i = 0; i < 4; i++) {
+  d += ` C${x + 4} 48 ${x + 4} 14 ${x + 10} 14`;      // inspiration → expiration upstroke
+  d += ` C${x + 30} 13 ${x + 60} 11 ${x + 78} 9`;      // alveolar plateau
+  d += ` C${x + 83} 9 ${x + 83} 48 ${x + 88} 48`;      // downstroke
+  x += 88;
+  d += ` H${x + 34}`;
+  x += 34;
+}
+d += ' H640';
+---
+<svg
+  class:list={['trace', { 'trace--draw': animate }, className]}
+  viewBox="0 0 640 56"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d={d} />
+</svg>
+
+<style>
+  .trace { display: block; width: 100%; height: 3.5rem; overflow: visible; }
+  path {
+    fill: none;
+    stroke: var(--blue);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+  /* One orchestrated moment: the trace sweeps across once, like a monitor. */
+  .trace--draw {
+    clip-path: inset(-10% 100% -10% 0);
+    animation: sweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+  }
+  @keyframes sweep { to { clip-path: inset(-10% 0 -10% 0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .trace--draw { clip-path: none; animation: none; }
+  }
+</style>

@@ -1,0 +1,89 @@
+[
+    {
+        "index": 1,
+        "question": "What type of anesthesia will I receive?",
+        "answer": [
+           {"type": "text", "content":  "At Metro Atlanta Endoscopy Center, the anesthesia provided is predominantly **Monitored Anesthesia Care (MAC)** sedation using propofol. It may also be called Total Intravenous Anesthesia (TIVA).  This ensures you remain comfortable and unaware during the procedure without requiring general anesthesia gases or an endotracheal tube"}
+        ]
+    },
+
+    {
+        "index": 2,
+        "question": "Who will be administering my anesthesia?",
+        "answer": [
+            {"type": "text", "content": "Your anesthesia care will be provided by highly trained professionals from Physician Specialists in Anesthesia. Depending on your case, the team may include:"},
+            {"type": "list", "content":[
+                    {"text": "Anesthesiologist (MD)", "bold": true, "description": "A physician specializing in anesthesia care."},
+                    {"text": "Certified Registered Nurse Anesthetist (CRNA)", "bold": true, "description": "Working under the supervision of an anesthesiologist to ensure safe and effective sedation."},
+                     {"text": "Certified Anesthesiologist Assistant (CAA)", "bold": true, "description": "Working under the supervision of an anesthesiologist to ensure safe and effective sedation."}
+            ]}
+            
+        ]
+    },
+
+    {
+        "index": 3,
+        "question": "How long does it take for anesthesia to wear off?",
+        "answer": [
+           {"type": "text", "content": "The effects of propofol wear off quickly. Most patients regain full consciousness within 20–30 minutes after the procedure. However, you may feel groggy for a few hours, so plan for someone to drive you home and assist you if needed."}
+           
+        ]
+    },
+
+    {
+        "index": 4,
+        "question": "What are the side effects or risks of anesthesia?",
+        "answer": [
+            {"type": "text", "content": "While anesthesia is generally safe, some common side effects include:"},
+            {"type": "list", "content": [
+                {"text": "Mild nausea or dizziness"},
+                {"text": "Fatigue or grogginess"},
+                {"text": "Rare allergic reactions to anesthetic drugs"},
+                {"text": "Older adults may experience temporary confusion or slower recovery due to age-related changes in metabolism."}
+            ]},
+            {"type": "text", "content": "Serious complications are rare but can include breathing difficulties, low blood pressure, or adverse reactions. Your anesthesia team will monitor you closely throughout the procedure."}
+        ]
+    },
+
+    {
+        "index": 5,
+        "question": "How will anesthesia affect me if I am older?",
+        "answer": [
+           {"type": "text", "content": "Older adults may experience slightly prolonged recovery times or heightened sensitivity to anesthesia. The anesthesia team will tailor your care to minimize risks and ensure a smooth recovery."}
+        ]
+    },
+
+    {
+        "index": 6,
+        "question": "What happens after the procedure?",
+        "answer": [
+           {"type": "text", "content": "After your procedure:"},
+           {"type": "list", "content": [
+                {"text": "You’ll recover in the Post-Anesthesia Care Unit (PACU), where nurses will monitor you until you’re fully awake and stable."},
+                {"text": "Discharge instructions will be provided in PACU, including guidance on resuming normal activities, managing side effects, and follow-up care."}
+           ]}
+        ]
+    },
+
+    {
+        "index": 7,
+        "question": "When will I get my results?",
+        "answer": [
+           {"type": "text", "content": "Your gastroenterologist will provide **preliminary results** in PACU immediately after the procedure. If tissue samples are sent for pathology, final results may take several days. Your doctor will contact you once those results are available."}
+        ]
+    },
+
+    {
+  "index": 8,
+  "question": "Who do I contact for questions or billing inquiries?",
+  "answer": [
+    { "type": "text", "content": "For any further questions or billing concerns, please reach out to the PSA business office:" },
+    { "type": "list", "content": [
+      { "kind": "phone", "label": "Phone", "value": "+14042571415" },
+      { "kind": "email", "label": "Email", "value": "info@psa-online.net" },
+      { "kind": "internal", "label": "Billing Info", "value": "/pt_info#billing" }
+    ]}
+  ]
+}
+
+]

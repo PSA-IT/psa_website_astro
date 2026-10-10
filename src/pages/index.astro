@@ -1,0 +1,211 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Trace from '../components/Trace.astro';
+import { img } from '../lib/images.js';
+import { site } from '../data/site.js';
+
+const tasks = [
+  { label: 'Pay your anesthesia bill', href: site.payBill, hint: 'Secure online payment', external: true },
+  { label: 'Billing questions and medical records', href: '/pt_info#billing' },
+  { label: 'Forms and consent documents', href: '/pt_info#forms' },
+  { label: 'What to expect from anesthesia', href: '/pt_info#faq' },
+];
+
+const partners = [
+  { name: 'Resurgens Orthopaedics', src: '/img/resurgens.png' },
+  { name: 'Northwest ENT and Allergy Center', src: '/img/nwent.png' },
+  { name: 'Metro Atlanta Gastroenterology', src: '/img/metroATL.png' },
+];
+---
+<Base>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Your safety and comfort are our priority.</h1>
+        <p class="lede">
+          Physician Specialists in Anesthesia is a physician-owned group providing anesthesia,
+          acute pain management and critical care at Emory Saint Joseph's Hospital and surgery
+          centers across metro Atlanta.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="/pt_info">Information for patients</a>
+          <a class="btn btn--ghost" href="/staff">Meet our physicians</a>
+        </div>
+      </div>
+
+      <aside class="tasks" aria-labelledby="tasks-title">
+        <h2 id="tasks-title">Here about a bill or an upcoming procedure?</h2>
+        <ul class="linklist">
+          {tasks.map((t) => (
+            <li>
+              <a href={t.href} {...(t.external ? { target: '_blank', rel: 'noopener' } : {})}>
+                <span>{t.label}</span>
+                {t.hint && <span class="hint">{t.hint}</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="small muted">
+          Questions? Call our business office at <a class="nowrap" href={site.phoneHref}>{site.phone}</a>.
+        </p>
+      </aside>
+    </div>
+    <div class="wrap"><Trace animate class="hero-trace" /></div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <figure class="hospital">
+        <Image
+          src={img('/img/emory-saint-josephs-hospital_pic.jpg')}
+          alt="Emory Saint Joseph's Hospital campus in Sandy Springs, Atlanta"
+          widths={[640, 1240]}
+          sizes="(max-width: 1240px) 100vw, 1240px"
+          loading="eager"
+        />
+        <figcaption>Emory Saint Joseph's Hospital, where PSA has been the exclusive anesthesia provider since 1980.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <h2>Who we are</h2>
+      <div class="measure">
+        <p>
+          Physician Specialists in Anesthesia (PSA) is an organization of healthcare professionals
+          dedicated to quality anesthesia, acute pain management, critical care and perioperative
+          services, while supporting the growth and development of its members.
+        </p>
+        <p>
+          We provide both hospital-based and ambulatory, office-based anesthesia, and we strive to be
+          the premier physician-owned anesthesia group in the Atlanta area.
+        </p>
+        <p><a href="/about">Read our history and values</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mist">
+    <div class="wrap split">
+      <h2>Where we care for patients</h2>
+      <div>
+        <ul class="anchors">
+          <li>
+            <Image src={img('/img/emory-saint-josephs-color.png')} alt="" width={200} />
+            <div>
+              <h3>Emory Saint Joseph's Hospital</h3>
+              <p class="muted">Exclusive anesthesia provider since 1980.</p>
+            </div>
+          </li>
+          <li>
+            <Image src={img('/img/kp-logo.png')} alt="" width={200} />
+            <div>
+              <h3>Kaiser Permanente</h3>
+              <p class="muted">Exclusive anesthesia provider for the Southeast Permanente Group.</p>
+            </div>
+          </li>
+        </ul>
+        <p class="partners-label">We also provide comprehensive anesthesia services for</p>
+        <ul class="partners">
+          {partners.map((p) => (
+            <li><Image src={img(p.src)} alt={p.name} width={180} /></li>
+          ))}
+        </ul>
+        <p><a href="/services">See all locations and services</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <h2>Recognized by our patients and peers</h2>
+      <div>
+        <p class="measure">
+          PSA has been named one of Atlanta Business Chronicle's Best Places to Work, and our
+          physicians are regularly recognized as Top Doctors by Atlanta Magazine and Castle Connolly.
+        </p>
+        <ul class="badges">
+          <li><Image src={img('/img/BPTW_2026.png')} alt="Atlanta Business Chronicle Best Places to Work" width={150} /></li>
+          <li><Image src={img('/img/award-Atlanta-Magazine-Top-Doctor.jpg')} alt="Atlanta Magazine Top Doctors" width={150} /></li>
+          <li class="wide"><Image src={img('/img/award-castle-connolly-web-logo.png')} alt="Castle Connolly Top Doctors" width={260} /></li>
+        </ul>
+        <p><a href="/awards">See awards and patient comments</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mist">
+    <div class="wrap split">
+      <h2>In our community</h2>
+      <div class="measure">
+        <p>
+          PSA proudly supports Saint Joseph's Mercy Care, our official charity partner and Atlanta's
+          leading federally qualified health center for the medically and socially vulnerable. Over
+          four decades we have invested more than $500,000, with a special focus on Mercy Care's
+          Street Medicine program.
+        </p>
+        <p><a href="/about#psa_in_action">Learn about PSA in action</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section join">
+    <div class="wrap join-grid">
+      <div class="measure">
+        <h2>Join a supportive, growing team</h2>
+        <p>
+          We're recruiting anesthesiologists, anesthesiologist assistants (CAA) and nurse anesthetists
+          (CRNA) for full-time call, full-time no-call and part-time positions.
+        </p>
+      </div>
+      <a class="btn" href="/careers">Explore careers</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-top: clamp(2.5rem, 7vw, 5rem); }
+  .hero-grid { display: grid; gap: 3rem; align-items: end; }
+  @media (min-width: 60rem) { .hero-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 5rem; } }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 4.6rem); max-width: 13ch; margin-bottom: 1.5rem; }
+  .hero .lede { max-width: 36rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .tasks h2 { font: 650 1.05rem/1.4 var(--sans); margin-bottom: 0.9rem; }
+  .tasks .linklist { margin-bottom: 1rem; }
+  .tasks .linklist a { font-weight: 550; }
+  .tasks .linklist a span:first-child { color: var(--blue); }
+  .hero :global(.hero-trace) { margin-top: clamp(2rem, 5vw, 3.5rem); height: 3.5rem; }
+
+  .section--tight { padding-block: 0 clamp(1rem, 3vw, 2rem); }
+  @media (max-width: 30rem) { .tasks .hint { display: none; } }
+  .section--tight + .section { border-top: 0; }
+  .hospital { margin: 0; }
+  .hospital img { width: 100%; border-radius: var(--radius); }
+  .hospital figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.9375rem; }
+
+  .anchors { list-style: none; padding: 0; margin: 0 0 2.5rem; display: grid; gap: 1.5rem; }
+  @media (min-width: 44rem) { .anchors { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
+  .anchors li { margin: 0; display: grid; gap: 1rem; align-content: start; }
+  .anchors img { height: 3.25rem; width: auto; object-fit: contain; object-position: left; mix-blend-mode: multiply; }
+  .anchors h3 { margin-bottom: 0.25rem; }
+  .anchors p { margin: 0; }
+  .partners-label { font-weight: 600; margin-bottom: 1rem; }
+  .partners { list-style: none; padding: 1.5rem 0; margin: 0 0 1.5rem; display: flex; flex-wrap: wrap; gap: 2rem 3rem; align-items: center; border-block: 1px solid var(--line); }
+  .partners li { margin: 0; }
+  .partners img { height: 3.25rem; width: auto; mix-blend-mode: multiply; }
+
+  .badges { list-style: none; padding: 0; margin: 1.5rem 0 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 2rem 3rem; }
+  .badges li { margin: 0; }
+  .badges img { height: 8.5rem; width: auto; }
+  .badges .wide img { height: auto; width: 15rem; }
+
+  .join { background: var(--blue); color: var(--white); }
+  .join h2 { color: var(--white); }
+  .join p { color: #e3eef7; margin: 0; }
+  .join-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem 3rem; }
+  .join .btn { background: var(--white); color: var(--blue); border-color: var(--white); }
+  .join .btn:hover { background: var(--mist); color: var(--blue-deep); }
+  .join :focus-visible { outline-color: var(--white); }
+</style>

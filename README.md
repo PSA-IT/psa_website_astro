@@ -34,7 +34,7 @@ The physician list is sorted by last name automatically, and each card gets an a
 
 ## Running it on your own computer (optional)
 
-You need [Node.js](https://nodejs.org) 22 or later.
+You need [Node.js](https://nodejs.org) 22.12 or later.
 
 ```sh
 npm install      # once

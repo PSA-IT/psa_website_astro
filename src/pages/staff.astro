@@ -1,0 +1,224 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Physician from '../components/Physician.astro';
+import physicians from '../data/physicians.json';
+import { slugFor, lastName } from '../lib/images.js';
+import { site } from '../data/site.js';
+
+const sorted = [...physicians].sort((a, b) => lastName(a.name).localeCompare(lastName(b.name)));
+const slugs = new Set(physicians.map((p) => slugFor(p.name)));
+
+// Link a leader's name to their physician card when there is one.
+const person = (name) => ({ name, href: slugs.has(slugFor(name)) ? `#${slugFor(name)}` : null });
+
+const board = [
+  ['Chair and Medical Director', 'John H. Stephenson, M.D., FASA'],
+  ['President', 'Julius Hamilton, M.D.'],
+  ['Secretary/Treasurer', 'David Moore, M.D.'],
+];
+
+const leadership = [
+  ['Chair, Department of Anesthesia', 'John Stephenson, M.D., FASA'],
+  ['Vice-Chair; President', 'Julius Hamilton, M.D.'],
+  ['Director; Chief of Clinical Operations', 'David Moore, M.D.'],
+  ['Quality Officer', 'Nanhi Mitter, M.D., M.Ed., FASA'],
+  ['PSCU, PAT and APP Manager', 'Lingesh Sivanesan, M.D.'],
+  ['OSP and CDD', 'Patrick Harkins, M.D.'],
+  ['Main OR and PACU', 'Abid Fazal, M.D.'],
+  ['Cardiac Anesthesia', 'Kimberley Haluski, M.D.'],
+  ['MAE Medical Director', 'Stacy Krueth, M.D.'],
+  ['Critical Care Medicine; CVICU Medical Director', 'Sarah Burke, M.D.'],
+  ['Information Technology', 'Vijal Patel, M.D.'],
+  ['Chief of Ambulatory Anesthesia; Resurgens Surgery Center Medical Director', 'Jason York, M.D.'],
+  ['Acute Pain, GIDU, Equipment, Purchasing and Anesthesia Technician Liaison', 'Taylor Kahnke, M.D.'],
+  ['Thoracic, Interventional Pulmonary and Non-OR Anesthesia', 'David Moore, M.D.'],
+  ['Vice-Chief of Ambulatory Anesthesia; Resurgens Lawrenceville Medical Director', 'David Apatov, M.D.'],
+  ['NWENT Medical Director', 'David Sanusi, M.D.'],
+  ['Education and CME Program', 'Lee Bannister, M.D.'],
+  ['Chief Anesthetists', 'Katie Hunt, CAA; Mohammad Pradhan, CAA; Ashleigh Schroder, CAA; Alex Yox, CAA'],
+  ['Chief Operations Officer', 'Lynn Epps'],
+];
+
+const office = [
+  ['Chief Operations Officer', 'Lynn Epps', 'lynn.epps@psa-online.net', '100'],
+  ['Director of HR and Finance', 'Ashley Bernal', 'ashley.bernal@psa-online.net', '101'],
+  ['Administrative and Credentialing Coordinator / Billing Documentation Specialist', 'Nandi Hage', 'nandi.hage@psa-online.net', '102'],
+  ['Business Operations Analyst', 'Stephen Campbell', 'steve.campbell@psa-online.net', '103'],
+  ['Administrative Coordinator', 'Valinda Shaw', 'vshaw@psa-online.net', '103'],
+];
+---
+<Base title="Our team" description="Meet the board-certified anesthesiologists, anesthetists and staff of Physician Specialists in Anesthesia in Atlanta.">
+  <PageHeader
+    title="Our team"
+    intro="Board-certified anesthesiologists, highly trained anesthetists and advanced practice providers, supported by a dedicated business office."
+  >
+    <nav class="jump" aria-label="On this page">
+      <ul>
+        <li><a href="#clinical-divisions">Leadership</a></li>
+        <li><a href="#our-physicians">Physicians</a></li>
+        <li><a href="#clinical-staff">Clinical staff</a></li>
+        <li><a href="#admin-staff">Business office</a></li>
+        <li><a href="/careers">Careers</a></li>
+      </ul>
+    </nav>
+  </PageHeader>
+
+  <section id="clinical-divisions" class="section">
+    <div class="wrap split">
+      <h2>Leadership</h2>
+      <div>
+        <h3>Board of directors</h3>
+        <dl class="roles">
+          {board.map(([role, name]) => {
+            const p = person(name);
+            return (<div><dt>{role}</dt><dd>{p.href ? <a href={p.href}>{name}</a> : name}</dd></div>);
+          })}
+        </dl>
+        <h3 class="next">Clinical leadership</h3>
+        <dl class="roles">
+          {leadership.map(([role, name]) => {
+            const p = person(name);
+            return (<div><dt>{role}</dt><dd>{p.href ? <a href={p.href}>{name}</a> : name}</dd></div>);
+          })}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="our-physicians" class="section section--mist">
+    <div class="wrap split">
+      <h2>Physicians</h2>
+      <div class="measure">
+        <p>
+          PSA takes great pride in the quality of its physician members. All PSA physicians are board
+          certified by the American Board of Anesthesiology, with degrees from some of the most
+          respected medical schools and anesthesia residency programs in the country, including Johns
+          Hopkins, UCSF, the Cleveland Clinic, Emory, the Mayo Clinic, the University of Rochester,
+          Harvard, Columbia, the University of Florida, Wake Forest, the Ochsner Clinic and the
+          University of Chicago. Many hold additional board certification in critical care medicine,
+          pain management or family medicine.
+        </p>
+        <p>
+          Thirteen members have passed the National Board of Echocardiography (NBE) Examination of
+          Special Competence in Advanced Perioperative Echocardiography, and five are fully board
+          certified by the NBE. Eight hold board certification in pain management. PSA is also proud to
+          count three board examiners of the American Board of Anesthesiology among its members, which
+          is highly unusual for a private practice of this size.
+        </p>
+        <p>
+          PSA members have been leaders in the American Society of Anesthesiologists, the Georgia
+          Society of Anesthesiologists, the Medical Association of Georgia, the Greater Atlanta Society
+          of Anesthesiologists and the medical staff of Saint Joseph's Hospital of Atlanta.{' '}
+          <a href="/awards">See physician awards and recognition</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="grid">
+        {sorted.map((p) => <Physician p={p} />)}
+      </div>
+
+      <div class="emeritus">
+        <h3>Physicians emeritus</h3>
+        <p class="measure">PSA honors retired physicians who have made extraordinary contributions to the practice with the status of Physician Emeritus.</p>
+        <ul>
+          <li>James L. Carlson, M.D.</li>
+          <li>Donn A. Chambers, M.D.</li>
+          <li>Stan Mogelnicki, M.D.</li>
+          <li>Steve Sween, M.D.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="clinical-staff" class="section">
+    <div class="wrap split">
+      <h2>Clinical staff</h2>
+      <div class="measure">
+        <p>
+          PSA uses the anesthesia care team model: an anesthesiology board-certified physician working
+          with a highly trained anesthetist. PSA anesthetists are either certified anesthesiologist
+          assistants (CAA) or certified registered nurse anesthetists (CRNA), and they are highly
+          skilled in caring for critically ill patients undergoing major surgery. Advanced practice
+          providers (APP) are also an integral part of the team, particularly in preoperative and
+          postoperative care.
+        </p>
+        <div class="two">
+          <div>
+            <h4>Chief anesthetists</h4>
+            <ul>
+              <li>Katherine L. Hunt, CAA</li>
+              <li>Mohammad Pradhan, CAA</li>
+              <li>Ashleigh Schroder, CAA</li>
+              <li>Alex Yox, CAA</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Lead APP</h4>
+            <ul><li>Laura Stanley, AGACNP</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="admin-staff" class="section section--mist">
+    <div class="wrap split">
+      <div>
+        <h2>Business office</h2>
+        <address>
+          {site.address[0]}<br />{site.address[1]}
+        </address>
+        <p>
+          Phone <a href={site.phoneHref}>{site.phone}</a><br />
+          Fax {site.fax}<br />
+          <a href={site.directions} target="_blank" rel="noopener">Driving directions</a>
+        </p>
+      </div>
+      <ul class="office">
+        {office.map(([role, name, email, ext]) => (
+          <li>
+            <p class="role">{role}</p>
+            <p class="who">{name}</p>
+            <p><a href={`mailto:${email}`}>{email}</a><br />{site.phone}, ext. {ext}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .jump { margin-top: 2rem; }
+  .jump ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+  .jump li { margin: 0; }
+  .jump a { font-weight: 550; }
+
+  .roles { margin: 0 0 1rem; border-top: 1px solid var(--line); }
+  .roles > div { display: grid; gap: 0.15rem 2rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+  @media (min-width: 40rem) { .roles > div { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+  .roles dt { color: var(--muted); }
+  .roles dd { margin: 0; font-weight: 600; }
+  .next { margin-top: 2.5rem; }
+
+  .grid {
+    display: grid; gap: 2.5rem 2rem; margin-top: 3rem; align-items: start;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
+  }
+  @media (min-width: 40rem) { .grid { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); } }
+  @media (max-width: 40rem) { .grid { gap: 2rem 1rem; } }
+  .emeritus { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+  .emeritus ul { columns: 2; max-width: 30rem; }
+
+  .two { display: grid; gap: 1.5rem 3rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); margin-top: 1.5rem; }
+  .two h4 { margin-bottom: 0.5rem; }
+
+  address { font-style: normal; margin-bottom: 1rem; }
+  .office { list-style: none; padding: 0; margin: 0; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+  .office li { margin: 0; }
+  .office p { margin: 0; }
+  .office .role { color: var(--muted); font-size: 0.9rem; }
+  .office .who { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; margin: 0.2rem 0 0.4rem; }
+</style>

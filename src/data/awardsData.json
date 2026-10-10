@@ -1,0 +1,268 @@
+ {
+  "companyAwards": [
+    { "src": "/img/award-bestplacework-med.png", "alt": "Best Places To Work 2023", "year": 2023 },
+    { "src": "/img/award-bestplacework-2023-2024.png", "alt": "Best Places To Work 2024", "year": 2024 },
+    { "src": "/img/2023(2).png", "alt": "Best Places To Work 2025", "year": 2025 }
+  ],
+
+  "employeeAwards": {
+    "Castle Connolly": {
+      "img": "img/award-castle-connolly-web-logo.png",
+
+      "years": {
+          "2026": ["Annie Yao, M.D.", "Stacy Krueth, M.D.", "David Apatov, M.D.", "Kurt Briesacher, M.D.", "Matthew Guidry, M.D.", "Kimberley Haluski, M.D.", "Patrick Harkins, M.D.",
+                    "Julius Hamilton, M.D.", "Anne Hartney-Baucom, M.D.", "Darren Hyatt, M.D.", "Taylor Kahnke, M.D.", "Nanhi Mitter, M.D.", 
+                    "David Moore, M.D.", "Lingesh Sivanesan, M.D.", "Jason York, M.D.", "Michelle Au, M.D."],
+          "2025": ["John Stephenson, M.D.", "David Apatov, M.D.", "Kurt Briesacher, M.D.", "Matthew Guidry, M.D.", "Kimberley Haluski, M.D.", "Patrick Harkins, M.D.",
+                    "Julius Hamilton, M.D.", "Anne Hartney-Baucom, M.D.", "Darren Hyatt, M.D.", "Taylor Kahnke, M.D.", "Stacy Krueth, M.D.", "Nanhi Mitter, M.D.", 
+                    "David Moore, M.D.", "Lingesh Sivanesan, M.D.", "Annie Yao, M.D.", "Jason York, M.D."],
+          "2024": ["David Apatov, M.D.", "Darren Hyatt, M.D.", "Michelle Au, M.D.", "Kurt Briesacher, M.D.", "Matthew Guidry, M.D.", "Kimberley Haluski, M.D.",
+                    "Julius Hamilton, M.D.", "Anne Hartney-Baucom, M.D.", "Stacy Krueth, M.D.", "Nanhi Mitter, M.D.", "Annie Yao, M.D.", "Jason York, M.D."],
+          "2023": ["Michelle Au, M.D.","Anne Hartney-Baucom, M.D.","Matthew Guidry, M.D.", "Kimberley Haluski, M.D.","Julius Hamilton, M.D.", "Darren Hyatt, M.D.",
+                    "Annie Yao, M.D.", "Jason York, M.D." ],
+          "2022": ["Jason York, M.D."]
+    }
+    },
+    "Atlanta Magazine Top Docs": {
+      "img": "img/award-Atlanta-Magazine-Top-Doctor.png",
+
+      "years":{
+        "2025": ["John Stephenson, M.D.","Anne Hartney-Baucom, M.D.", "Jason York, M.D."],
+        "2024": ["John Stephenson, M.D.","Darren Hyatt, M.D.","Anne Hartney-Baucom, M.D.", "Jason York, M.D."],
+        "2023": ["John Stephenson, M.D.","Steven Sween, M.D.","Anne Hartney-Baucom, M.D.", "Jason York, M.D."],
+        "2022": ["John Stephenson, M.D.","Steven Sween, M.D.","Anne Hartney-Baucom, M.D.", "Jason York, M.D.", "Kimberley Haluski, M.D."]}
+    }
+  },
+ 
+ "testimonials": [
+  
+  {
+              
+    "quote": "Everyone was kind and attentive throughout my procedure.",
+    "author": "J.S.",                
+    "date": "2025-07-10",
+    "facility": "Emory St. Joseph’s"
+  },
+  {
+              
+    "quote": "Experience could not have been better or more professional.  Entire staff were warm, caring, and incredibly professional.  Their communication and actions were 15 (on a scale of 1 to 10).",
+    "author": "J.S.",                
+    "date": "2025-07-22",
+    "facility": "Metro Atlanta Gastroenterology"
+  },
+  {
+               
+    "quote": "Everything was explained clearly and thoroughly and my questions/concerns were answered to my satisfaction. I did not  experience the post operative “breakthrough” pain people talk about. I was very comfortable and am making good progress on my recovery.",
+    "author": "J.S.",                
+    "date": "2025-07-16",
+    "facility": "Resurgens"
+  },
+  {
+              
+    "quote": "Very wonderful experience throughout.  Personable and friendly staff",
+    "author": "J.S.",                
+    "date": "2025-07-25",
+    "facility": "Metro Atlanta Gastroenterology"
+  },
+  {
+    "type": "testimonial",          
+    "source": "Patient",            
+    "quote": "Kind, caring, and professional.",
+    "author": "J.S.",                
+    "date": "2025-07-24",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+               
+    "quote": "Everything went as expected, they noted my concerns and were very responsive.",
+    "author": "J.S.",                
+    "date": "2025-07-10",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+             
+    "quote": "My anesthesiologist was very nice and friendly and did a great job",
+    "author": "J.S.",                
+    "date": "2025-07-14",
+    "facility": "Metro Atlanta Gastroenterology"
+  },
+  {
+                
+    "quote": "Very kind, professional  and knowledgeable.",
+    "author": "J.S.",                
+    "date": "2025-07-16",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+               
+    "quote": "My anesthiologist was great. Very informative and made sure what I was nervous about was well covered.",
+    "author": "J.S.",                
+    "date": "2025-07-16",
+    "facility": "Metro Atlanta Gastroenterology"
+  },
+  {
+               
+    "quote": "They were excellent!!",
+    "author": "J.S.",                
+    "date": "2025-07-23",
+    "facility": "Metro Atlanta Gastroenterology"
+  },
+  {
+               
+    "quote": "Excellent service",
+    "author": "J.S.",                
+    "date": "2025-07-25",
+    "facility": "Resurgens"
+  },
+  {
+                
+    "quote": "My experience was really great. My recovery was also fast and without any major pain or discomfort.",
+    "author": "J.S.",                
+    "date": "2025-06-24",
+    "facility": "Northwest ENT"
+  },
+  {
+              
+    "quote": "Great team of doctors and great experience overall!",
+    "author": "J.S.",                
+    "date": "2025-07-16",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+            
+    "quote": "A perfect experience with no residual side effects",
+    "author": "J.S.",                
+    "date": "2025-07-01",
+    "facility": "Resurgens"
+  },
+  {
+             
+    "quote": "A perfect experience with no residual side effects",
+    "author": "J.S.",                
+    "date": "2025-07-01",
+    "facility": "Resurgens"
+  },
+  {
+              
+    "quote": "Everything was perfect!! Thank you!!",
+    "author": "J.S.",                
+    "date": "2025-06-26",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+              
+    "quote": "Dr. Kahnke was the very best anesthesiologist. He was courteous, kind, professional and put me completely at ease. I was terrified, but he completely eased my mind. Please thank him for me.",
+    "author": "J.S.",                
+    "date": "2025-07-01",
+    "facility": "Resurgens"
+  },
+  {
+             
+    "quote": "It was a great experience. He was very kind.",
+    "author": "J.S.",                
+    "date": "2025-06-24",
+    "facility": "Metro Atlanta Gastroenterology"
+  },
+  {
+             
+    "quote": "I was truly made to feel very comfortable.",
+    "author": "J.S.",                
+    "date": "2025-06-27",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+                
+    "quote": "My experience with my anesthesia providers was 100% positive.  Everyone on the team was courteous and professional; all my questions were answered and I was made comfortable at every step in the process.  The atmosphere and everyone’s demeanor enabled me to relax with confidence.  I received excellent care and communication.",
+    "author": "J.S.",                
+    "date": "2025-06-04",
+    "facility": "Resurgens"
+  },
+  {
+                
+    "quote": "Very pleased. Anesthesia treated me very well. I didn’t get sick and the team responded quickly to my postop pain.",
+    "author": "J.S.",                
+    "date": "2025-05-27",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+                
+    "quote": "They were very kind and explained what was happening very well",
+    "author": "J.S.",                
+    "date": "2025-05-30",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+                
+    "quote": "Great experience! I was completely at ease and very comfortable!",
+    "author": "J.S.",                
+    "date": "2025-06-02",
+    "facility": "Metro Atlanta Gastroenterology"
+  },
+  {
+               
+    "quote": "My anesthesiologist and his team were wonderful! They assured me that they would take good care of me as they knew that I was very fearful. I’m most appreciative. They took excellent care of me.",
+    "author": "J.S.",                
+    "date": "2025-06-02",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+               
+    "quote": "Anesthesiologist was very knowledgeable and professional",
+    "author": "J.S.",                
+    "date": "2025-05-13",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+               
+    "quote": "I had absolutely no problems. Great communication step by step.",
+    "author": "J.S.",                
+    "date": "2025-05-12",
+    "facility": "Resurgens"
+  },
+  {
+    "type": "testimonial",          
+    "source": "Patient",            
+    "quote": "I had a great experience!!! Very friendly staff, Doctor explained what was going to happen. I had no questions.",
+    "author": "J.S.",                
+    "date": "2025-05-16",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+             
+    "quote": "A great, positive experience.  Thank you!",
+    "author": "J.S.",                
+    "date": "2025-04-22",
+    "facility": "Resurgens"
+  },
+  {
+              
+    "quote": "I had one of the best anesthesia experiences I’ve had in a long time. Comfort, communication and care was above all of my expectation. And I felt like I was the only person the team cared about.",
+    "author": "J.S.",                
+    "date": "2025-05-16",
+    "facility": "Resurgens"
+  },
+  {
+              
+    "quote": "Best anesthesia group EVER!!!",
+    "author": "J.S.",                
+    "date": "2025-04-03",
+    "facility": "Resurgens"
+  },
+  {
+               
+    "quote": "The best thing you can say about anesthesia is - It was as easy as taking a few deep breaths and as easy as waking up.  Absolutely a positive experience.",
+    "author": "J.S.",                
+    "date": "2025-03-26",
+    "facility": "Resurgens - Lawrenceville"
+  },
+  {
+                
+    "quote": "All anesthesia staff I encountered were wonderful!",
+    "author": "J.S.",                
+    "date": "2025-03-26",
+    "facility": "Resurgens"
+  }
+
+  
+]
+  }

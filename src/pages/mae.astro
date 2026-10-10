@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FaqList from '../components/FaqList.astro';
+import faq from '../data/maeFAQ.json';
+import { img } from '../lib/images.js';
+import { site } from '../data/site.js';
+
+// These steps happen in order on the day of the procedure, so they're numbered.
+const steps = [
+  ['Check-in', 'Upon arrival at Metro Atlanta Endoscopy Center, check in at the front desk and provide any necessary documentation. You will be directed to the preoperative area to prepare for your procedure.'],
+  ['Preoperative preparation', 'Nurses will review your medical history and confirm your procedure details. An IV line will be placed for fluids and anesthesia medications. The anesthesia team will meet with you to discuss the sedation plan and answer any questions.'],
+  ['The procedure', 'During your colonoscopy or endoscopy, you will receive sedation with propofol so you remain comfortable and unaware throughout. The anesthesia team will monitor your vital signs closely to ensure your safety.'],
+  ['Recovery', 'You will be moved to the Post-Anesthesia Care Unit (PACU) for monitoring as you wake up. Nurses will make sure you are stable and give you discharge instructions tailored to your recovery.'],
+  ['Going home', 'You will receive detailed instructions on caring for yourself at home, when to resume normal activities, and any prescribed medications. Make sure someone can drive you home, as you may feel drowsy for several hours.'],
+  ['Results', 'Your gastroenterologist will share preliminary results in PACU. If pathology is needed, expect final results within a few days; your gastroenterologist will contact you directly.'],
+];
+---
+<Base title="Metro Atlanta Gastroenterology patients" description="What to expect from anesthesia for your colonoscopy or endoscopy at Metro Atlanta Endoscopy Center, provided by Physician Specialists in Anesthesia.">
+  <PageHeader
+    title="Anesthesia at Metro Atlanta Endoscopy Center"
+    intro="PSA provides anesthesia for colonoscopies and endoscopies at Metro Atlanta Gastroenterology. Here's what to expect on the day of your procedure."
+  >
+    <Image class="mae-logo" src={img('/img/metroATL.png')} alt="Metro Atlanta Gastroenterology and Metro Atlanta Endoscopy Center" width={240} densities={[1, 2]} />
+  </PageHeader>
+
+  <section class="section">
+    <div class="wrap split">
+      <h2>What to expect</h2>
+      <ol class="steps measure">
+        {steps.map(([t, d]) => (<li><h3>{t}</h3><p>{d}</p></li>))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--mist">
+    <div class="wrap split">
+      <h2>Common questions</h2>
+      <div class="measure"><FaqList id="faq" items={faq} /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <h2>Questions about anesthesia or billing?</h2>
+      <div class="measure">
+        <p>Contact the Physician Specialists in Anesthesia business office.</p>
+        <p>
+          Phone <a href={site.phoneHref}>{site.phone}</a><br />
+          Email <a href={`mailto:${site.emails.info}`}>{site.emails.info}</a><br />
+          <a href="/pt_info#billing">Billing information</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  :global(.mae-logo) { margin-top: 1.75rem; width: 240px; height: auto; mix-blend-mode: multiply; }
+  .steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+  .steps li { counter-increment: step; position: relative; padding: 0 0 1.75rem 3.25rem; margin: 0; }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 0; top: 0;
+    width: 2.1rem; height: 2.1rem; border-radius: 50%;
+    border: 1.5px solid var(--blue); color: var(--blue);
+    display: grid; place-items: center; font-weight: 650; font-size: 0.95rem;
+  }
+  .steps li:not(:last-child)::after {
+    content: ''; position: absolute; left: 1.05rem; top: 2.4rem; bottom: 0.3rem; width: 1.5px; background: var(--line);
+  }
+  .steps h3 { margin-bottom: 0.3rem; padding-top: 0.2rem; }
+  .steps p { margin: 0; }
+</style>

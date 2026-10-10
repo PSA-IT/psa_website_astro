@@ -1,0 +1,58 @@
+---
+// Renders FAQ.json / maeFAQ.json. Answers are blocks of
+//   { type: "text", content: "markdown text" }  or
+//   { type: "list", content: [ { text, link? } | { text, bold?, description? } | { kind, label, value } ] }
+import { marked } from 'marked';
+
+interface Props { items: any[]; id?: string; }
+const { items, id } = Astro.props;
+
+// Fix links that pointed at old or misspelled locations on this site.
+const fixLink = (href = '') =>
+  href
+    .replace(/^https?:\/\/(www\.)?psa-online\.net/i, '')
+    .replace(/^\/patientforms\//, '/patient_forms/')
+    .replace(/^\/osa\/$/, '/osa');
+const isExternal = (href) => /^https?:/i.test(href);
+const linkAttrs = (href) => (isExternal(href) ? { target: '_blank', rel: 'noopener' } : {});
+const md = (text) => marked.parseInline(text || '');
+const formatPhone = (v) => {
+  const m = String(v).match(/^\+?1?(\d{3})(\d{3})(\d{4})$/);
+  return m ? `${m[1]}-${m[2]}-${m[3]}` : v;
+};
+---
+<div class="faq" id={id}>
+  {items.map((item) => (
+    <details class="qa">
+      <summary>{item.question}</summary>
+      <div class="answer">
+        {item.answer.map((block) =>
+          block.type === 'text' ? (
+            <p set:html={md(block.content)} />
+          ) : block.type === 'list' ? (
+            <ul>
+              {block.content.map((li) => {
+                if (li.kind === 'phone') return <li>{li.label}: <a href={`tel:${li.value}`}>{formatPhone(li.value)}</a></li>;
+                if (li.kind === 'email') return <li>{li.label}: <a href={`mailto:${li.value}`}>{li.value}</a></li>;
+                if (li.kind === 'internal' || li.kind === 'external')
+                  return <li><a href={fixLink(li.value)} {...linkAttrs(li.value)}>{li.linkText || li.label || li.value}</a></li>;
+                if (li.email) return <li><a href={`mailto:${li.email}`}>{li.text || li.email}</a></li>;
+                if (li.link) {
+                  const href = fixLink(li.link);
+                  return <li><a href={href} {...linkAttrs(href)}>{li.text}</a></li>;
+                }
+                if (li.description)
+                  return <li><strong>{li.text}</strong>: {li.description}</li>;
+                return <li set:html={md(li.text)} />;
+              })}
+            </ul>
+          ) : null
+        )}
+      </div>
+    </details>
+  ))}
+</div>
+
+<style>
+  .answer :global(ul) { margin-bottom: 1rem; }
+</style>

@@ -1,0 +1,161 @@
+---
+import { Image } from 'astro:assets';
+import { img, slugFor } from '../lib/images.js';
+
+interface Props { p: any; }
+const { p } = Astro.props;
+
+const has = (v) => (Array.isArray(v) ? v.length > 0 : typeof v === 'string' ? v.trim() !== '' : !!v);
+const asList = (v) => (Array.isArray(v) ? v : [v]);
+
+// Field order and labels for the "Education and credentials" panel.
+const fields = [
+  ['undergraduate', 'Undergraduate'],
+  ['graduate', 'Graduate school'],
+  ['graduateStudies', 'Graduate studies'],
+  ['medicalSchool', 'Medical school'],
+  ['mph', 'M.P.H.'],
+  ['internship', 'Internship'],
+  ['residency', 'Residency'],
+  ['fellowship', 'Fellowship'],
+  ['boardCertifications', 'Board certifications'],
+  ['professionalMemberships', 'Professional memberships'],
+].filter(([key]) => has(p[key]));
+
+const oa = p.otherActivities;
+const activityGroups = Array.isArray(oa)
+  ? (oa.length ? [['Other activities', oa]] : [])
+  : oa && typeof oa === 'object'
+    ? [['current', 'Current activities'], ['past', 'Past activities'], ['committees', 'Committees'], ['lectures', 'Lectures'], ['awards', 'Activity awards']]
+        .filter(([k]) => Array.isArray(oa[k]) && oa[k].length)
+        .map(([k, label]) => [label, oa[k]])
+    : [];
+
+const slug = slugFor(p.name);
+const summary = has(p.fellowship) ? asList(p.fellowship)[0] : has(p.residency) ? asList(p.residency)[0] : p.medicalSchool;
+const summaryLabel = has(p.fellowship) ? 'Fellowship' : has(p.residency) ? 'Residency' : 'Medical school';
+---
+<article class="doc" id={slug}>
+  <Image
+    src={img(p.image)}
+    alt={`Portrait of ${p.name}`}
+    width={280}
+    height={320}
+    densities={[1, 2]}
+    fit="cover"
+    position="top"
+  />
+  <div class="body">
+    <h3>{p.name}</h3>
+    {summary && <p class="summary"><span>{summaryLabel}:</span> {summary}</p>}
+
+    <details data-smooth>
+      <summary>Education and credentials</summary>
+      <dl>
+        {fields.map(([key, label]) => (
+          <>
+            <dt>{label}</dt>
+            <dd>
+              {Array.isArray(p[key]) ? <ul>{p[key].map((v) => <li>{v}</li>)}</ul> : p[key]}
+            </dd>
+          </>
+        ))}
+        {activityGroups.map(([label, items]) => (
+          <>
+            <dt>{label}</dt>
+            <dd><ul>{items.map((v) => <li>{v}</li>)}</ul></dd>
+          </>
+        ))}
+        {has(p.awards) && (
+          <>
+            <dt>Awards</dt>
+            <dd><ul>{asList(p.awards).map((v) => <li>{v}</li>)}</ul></dd>
+          </>
+        )}
+      </dl>
+    </details>
+  </div>
+</article>
+
+<script>
+  // Smoothly open and close each card's details panel. Without JavaScript, or for
+  // people who prefer reduced motion, the panel simply opens and closes instantly.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll<HTMLDetailsElement>('details[data-smooth]').forEach((details) => {
+    const summary = details.querySelector('summary');
+    const panel = details.querySelector<HTMLElement>('dl');
+    if (!summary || !panel) return;
+    let anim: Animation | null = null;
+    summary.addEventListener('click', (e) => {
+      if (reduce.matches) return;
+      e.preventDefault();
+      anim?.cancel();
+      const opening = !details.open;
+      details.classList.toggle('is-closing', !opening);
+      if (opening) details.open = true;
+      const full = panel.scrollHeight;
+      anim = panel.animate(
+        opening
+          ? [{ height: '0px', opacity: 0 }, { height: `${full}px`, opacity: 1 }]
+          : [{ height: `${full}px`, opacity: 1 }, { height: '0px', opacity: 0 }],
+        { duration: 350, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+      );
+      panel.style.overflow = 'hidden';
+      anim.onfinish = () => {
+        panel.style.overflow = '';
+        if (!opening) details.open = false;
+        details.classList.remove('is-closing');
+        anim = null;
+      };
+    });
+  });
+</script>
+
+<style>
+  .doc {
+    display: flex; flex-direction: column; scroll-margin-top: 6rem;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(19, 38, 58, 0.06), 0 10px 24px -14px rgba(19, 38, 58, 0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .doc:hover, .doc:focus-within {
+    border-color: #b9cddd;
+    box-shadow: 0 2px 4px rgba(19, 38, 58, 0.06), 0 22px 40px -18px rgba(19, 38, 58, 0.42);
+  }
+  .doc:hover { transform: translateY(-4px) scale(1.02); }
+  @media (prefers-reduced-motion: reduce) {
+    .doc:hover { transform: none; }
+  }
+  .doc :global(img) { width: 100%; aspect-ratio: 7 / 8; object-fit: cover; object-position: top; background: var(--mist); }
+  .body { display: flex; flex-direction: column; flex: 1; padding: 1.1rem 1.25rem 0.25rem; }
+  /* Reserve the same space on every card so closed cards line up evenly. */
+  h3 { margin: 0 0 0.4rem; font-size: 1.2rem; min-height: 2.3em; }
+  .summary {
+    font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.45;
+    min-height: calc(1.45em * 5);
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden;
+  }
+  .summary span { color: var(--ink); font-weight: 600; }
+  details { margin-top: auto; border-top: 1px solid var(--line); }
+  summary {
+    cursor: pointer; padding: 0.8rem 0; font-weight: 600; font-size: 0.95rem; color: var(--blue);
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+  }
+  summary:hover { color: var(--blue-deep); }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: ''; width: 0.5rem; height: 0.5rem; margin-right: 0.2rem;
+    border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg); transition: transform 0.3s ease;
+  }
+  details[open]:not(.is-closing) summary::after { transform: translateY(2px) rotate(-135deg); }
+  dl { font-size: 0.9rem; margin: 0; padding-bottom: 1rem; }
+  dt { font-weight: 650; margin-top: 0.75rem; }
+  dt:first-child { margin-top: 0; }
+  dd { margin: 0.15rem 0 0; color: var(--muted); }
+  dd ul { padding-left: 1rem; margin: 0; }
+  dd li + li { margin-top: 0.2rem; }
+</style>

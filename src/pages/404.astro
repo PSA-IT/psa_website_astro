@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../data/site.js';
+---
+<Base title="Page not found">
+  <PageHeader
+    title="We couldn't find that page"
+    intro="The page may have moved when we updated our website. Try one of these instead, or call us."
+  />
+  <section class="section">
+    <div class="wrap measure">
+      <ul class="linklist">
+        <li><a href="/"><span>Home</span></a></li>
+        <li><a href="/pt_info"><span>Information for patients</span></a></li>
+        <li><a href={site.payBill} target="_blank" rel="noopener"><span>Pay a bill</span></a></li>
+        <li><a href="/staff"><span>Our team</span></a></li>
+        <li><a href="/contact_us"><span>Contact us</span></a></li>
+      </ul>
+      <p>Business office: <a href={site.phoneHref}>{site.phone}</a></p>
+    </div>
+  </section>
+</Base>

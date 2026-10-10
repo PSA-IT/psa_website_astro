@@ -1,0 +1,116 @@
+[
+    {
+        "index": 1,
+        "question": "What is anesthesia?",
+        "answer": [
+           {"type": "text", "content":  "Anesthesia consists of the administration of drug or drugs to render the body or part of the body incapable of sensing a painful stimulus. This can be achieved by a variety of methods, and the method chosen is often dictated by the surgical procedure as well as the patient's medical history."}
+        ]
+    },
+
+    {
+        "index": 2,
+        "question": "What are the different types of anesthesia?",
+        "answer": [
+            {"type": "text", "content": "**Monitored Anesthesia Care** or 'MAC' is performed for minor surgical procedures such as removal of a skin lesion, minor orthopedics such as hand or finger surgery, or removal of a breast mass. In these instances a local anesthetic, typically lidocaine or marcaine, is injected into the surgical site to produce numbness. Patients will typically receive intravenous sedatives to produce a calm and sedate mental state. The combination of sedative agents not only provides the patient with a feeling of calm and well-being, but also provides a certain degree of amnesia for the intra-operative events. One advantage of MAC is that recovery from anesthesia is often fairly quick with minimal side effects."},
+            {"type": "text", "content":"**Regional Anesthesia** includes anesthetic techniques that anesthetize large portions, or regions of the body."},
+            {"type": "text", "content":"**Spinal anesthesia** involves injecting a small amount of local anesthetic in the low back. This produces complete numbness of the body below a certain level (typically from the navel down). This technique can be used for many types of surgeries such as urological, vascular, and orthopedic procedures."},
+            {"type": "text", "content":"**Epidural anesthesia** is similar to spinal anesthesia, but differs slightly in the exact location of delivery of the local anesthetic and also a small catheter can be left in place for a period of time, up to days even. Epidural anesthesia is used when repeated injection of medication are anticipated, usually in the setting of a long anesthetic (such as child birth). At St. Josephs we typically employ epidural anesthesia for post-operative pain relief, when the catheter is left in for a few to several days after major abdominal or chest surgery. This form of post-operative analgesia (pain relief) can be superior to traditional intravenous medicine."},
+            {"type": "text", "content":"**Peripheral Nerve Blocks** allow an entire extremity to be completely numb for a duration of up to hours. These techniques are often used in the setting of arm or shoulder surgery. Sometimes peripheral nerve blocks are used in the operating room as the sole anesthetic (in conjunction with intravenous sedation), but they are also performed after surgery to provide many hours of pain relief."},
+            {"type": "text", "content":"**General Anesthesia** occurs when total loss of consciousness is produced by any number of anesthetic agents, typically an intravenous drug or anesthetic gas. You will remain unconscious and totally unaware of the surgical procedure and other sensations for the duration of the anesthetic."},
+            {"type": "text", "content":"General anesthesia typically requires a breathing tube, which is placed after the patient is unconscious. Breathing is then supported with a mechanical ventilator. As with all types of anesthesia your vital signs, including blood pressure, EKG, blood oxygen levels, and body temperature are monitored continuously. Also with general anesthesia, the concentration of oxygen, carbon dioxide and all anesthetic gasses you are breathing are sampled continuously and analyzed by infrared technology. This assures your safety as well as an adequate depth of anesthesia."},
+            {"type": "text", "content":"At the completion of the procedure, the anesthetic agents will be discontinued or reversed as the case may be, and then you will be awakened. Common side effects of general anesthesia include nausea and sore throat."}
+        ]
+    },
+
+    {
+        "index": 3,
+        "question": "For Older Patients and Concerns About Delirium",
+        "answer": [
+           {"type": "text", "content": "Unfortunately, delirium is a common complication seen during the postoperative course: the cause is likely mutifactorial and not fully understood. Post-operative delirium (POD) is a form of delirium that manifests in patients who have undergone surgical procedures and anesthesia, usually peaking between one and three days after their operation. Certain patients with conditions such as advanced age, previous dementia or depression, and other systemic illness, are at higher risk of POD. "},
+           {"type": "text", "content": "The relationship between anesthesia and delirium is complex, and not yet fully understood. On one side, we know that delirium is common after anesthesia and surgery. Delirium is certainly associated with many classes of drugs used in the perioperative period - such as pain medications (opioids), steroids, and anxiety medications. Perioperative patients are also exposed to many precipitating factors that may lead to delirium, particularly pain, environmental unfamiliarity including disrupted sleep cycles. There is also conflicting data on the delirium from the type of anesthesia - with postoperative delirium seen in both regional and general anesthesia."},
+           {"type": "text", "content": "What we do for your health - PSA attempts to minimze/avoid medications known to cause delirium/POD/postoperative cognitive dysfunction in patients deemed at risk."},
+           {"type": "text", "content": "For more information:"},
+           {"type": "list", "content":[
+                {"text": "Seniors & Anesthesia (Guidance from the ASA)", "link": "https://madeforthismoment.asahq.org/preparing-for-surgery/risks/age/"},
+                {"text": "Brain Health Initiative", "link":  "https://www.asahq.org/brainhealthinitiative"}
+           ] },
+           {"type": "text", "content": "Other resources:"},
+           {"type": "list", "content": [
+                {"text": "Prevention and Treatment of Post-Operative Delirium from Health in Aging", "link":"https://www.healthinaging.org/resources/resource:prevention-and-treatment-of-post-operative-delirium/"},
+                {"text": "Anesthesia and Postoperative Cognitive Decline Potential", "link": "https://www.neurologyadvisor.com/general-neurology/anesthesia-cognitive-decline-potential-link/article/701509/"}
+           ]}
+        ]
+    },
+
+    {
+        "index": 4,
+        "question": "What is an Anesthesiologist?",
+        "answer": [
+            {"type": "text", "content": "Anesthesiologists are physicians who complete a four-year college degree (typically with an emphasis on biology, chemistry, and physics), four years of medical school training (the same as your surgeon), and four more years of specialized anesthesiology training. They apply their skills to fulfill their primary role in the operating room, ensuring your comfort. Anesthesiologists also make important medical decisions, often in split seconds to ensure your safety. This includes monitoring and treating changes in your vital functions such as breathing, heart rate, and blood pressure; as well as fluid administration and blood transfusion as needed."},
+            {"type": "text", "content": "Your Anesthesiologist is also responsible for medically managing any chronic illnesses (diabetes, heart disease, emphysema, etc) in the time prior to, during, and immediately after your surgery. As medical doctors, Anesthesiologists are uniquely qualified to treat not only sudden, acute conditions related to the surgery itself but also chronic conditions that may need special attention while under their care."},
+            {"type":"text", "content": "For more information:"},
+            {"type": "list", "content": [
+                {"text": "Safeguarding Your Surgery: The Vital Role of Anesthesiologists and What You Need to Know and Share for a Successful Procedure", "link": "http://psa-online.net/patientforms/safeguardingyoursurgery.pdf"}
+            ]}
+        ]
+    },
+
+    {
+        "index": 5,
+        "question": "What is an Anesthetist? And who is part of my anesthesia care team?",
+        "answer": [
+           {"type": "text", "content": "As you are planning and preparing for your surgery, you may be aware that multiple trained professionals are involved in your care in addition to your surgeon. In fact, an entire team of physicians, physician assistants, nurses, and additional medical staff will work together to keep you safe and ensure your surgery is a success. "},
+           {"type": "text", "content": "Your anesthesia care team is lead by a licensed and trained physician anesthesiologist, and supervises a team including anesthetists. Your anesthetist may be a certified registered nurse anesthetist (CRNA) or certified anesthesiology assistant (CAA). Your anesthetist works under the direction of licensed anesthesiologists to implement anesthesia care plans, and helps to ensure your safety throughout surgery."}
+        ]
+    },
+
+    {
+        "index": 6,
+        "question": "How do I prepare for my anesthetic?",
+        "answer": [
+           {"type": "text", "content": "Patients of outpatient surgical facilities will be screened pre-operatively by a nurse in the surgeon's clinic. If there are any concerns regarding your medical history, a visit with an Anesthesiologist may be scheduled prior to the day of surgery."},
+           {"type": "text", "content": "One of the most important jobs of the Anesthesiologist is performing your pre-operative assessment. This involves collecting a detailed medical history as well as past surgical and anesthetic history. Many of the patients we anesthetize at St. Joseph's Hospital have complex medical histories including heart, lung, vascular and kidney disease, and often times, these patients have a variety of specialists managing their care. One of the roles of the pre-testing clinic is to collect as much data as possible about your medical history in order for the Anesthesiologist to plan an appropriate anesthetic ensuring your comfort and safety."},
+           {"type": "text", "content": "Occasionally, patients seen in the pre-testing clinic are not optimized medically, or perhaps new diagnoses are made through routine testing. Common examples of this are patients with newly discovered abnormal EKG's or acute exacerbations of chronic illnesses. If this is the case, you may be referred to a specialist for medical evaluation or treatment prior to your surgery."},
+           {"type": "text", "content": "It is vital for your Anesthesiologist to make sure that you are as medically fit as possible prior to your anesthetic. Also, you will be given instructions as to when to cease eating and drinking prior to surgery and which medications you should take both the night before and the morning of your surgery. Typically, heart and blood pressure medications are allowed, and diabetes medications (including both insulin and oral anti-hyperglycemics) are to be withheld. Please follow the instructions you are given by the pre-testing clinic."},
+           {"type": "text", "content": "Patients of Resurgens Surgical Center are telephone interviewed by a Resurgens clinic nurse. You may be asked to physically visit the clinic prior to your day of surgery for an assessment by an Anesthesiologist if necessary. You will receive instructions on eating and drinking and also which medications to take prior to your surgery."},
+           {"type": "text", "content": "For more information:"},
+           {"type": "list", "content": [
+                {"text": "The American Society of Anesthesiologists (ASA) Patient Education Website", "link": "https://www.asahq.org/WhenSecondsCount"}
+           ]}
+        ]
+    },
+
+    {
+        "index": 7,
+        "question": "What type of anesthesia will I receive?",
+        "answer": [
+           {"type": "text", "content": "Typically patients have a choice in what type of anesthetic they will receive. Your Anesthesiologist will meet with you prior to your surgery and discuss your options with you. Please feel free to ask as many questions as you wish. Your Anesthesiologist is committed to providing you with the utmost in comfort and safety during your procedure, and informed patient decision-making is a priority."},
+           {"type": "text", "content": "**Monitored Anesthesia Care (MAC)** or 'twilight sleep' is often recommended for minor surgical procedures. Spinal anesthesia is frequently used for total hip or knee replacement. General anesthesia is the most commonly employed technique and is administered for abdominal, chest, major vascular, and spine surgery for example. However, there is often more than one way to perform an anesthetic for a given procedure, so take the time to visit the section on this site discussing the types of anesthesia so you and your Anesthesiologist can plan the right anesthetic for you."},
+           {"type": "text", "content": "Sometimes, however, due to medical necessity or other technical reasons you may be strongly encouraged to accept one specific type of anesthesia. For example, patients with severe lung disease may be offered spinal over general anesthesia as it reduces the risk of anesthesia related lung complications. Your anesthesiologist is your advocate and is there to ensure your comfort and even more importantly, your safety."},
+           {"type": "text", "content": "For more information:"},
+           {"type": "list", "content": [
+                {"text": "Patient Education on Types of Anesthesia from the American Society of Anesthesiologists (ASA)", "link": "https://www.asahq.org/whensecondscount/anesthesia-101/types-of-anesthesia/"}
+           ]}
+        ]
+    },
+
+    {
+        "index": 8,
+        "question": "What is OSA and how does it affect my anesthesia?",
+        "answer": [
+           {"type": "text", "content": "**Obstructive Sleep Apnea (OSA)** is a condition where you stop breathing (apnea) or have shallow breathing while you sleep. You or a sleeping partner may notice gasping, snorting, or choking sounds. This results in poor sleep quality and daytime tiredness. Sleep apnea increases your risk of other medical conditions like high blood pressure and heart disease."},
+           {"type": "text", "content": "For more information: "},
+           {"type": "list", "content": [
+                {"text": "PSA's OSA Patient Education", "link": "http://www.psa-online.net/osa/"}
+           ]}
+        ]
+    },
+
+    {
+        "index": 9,
+        "question": "Can I request a specific member of PSA to provide my anesthesia?",
+        "answer": [
+           {"type": "text", "content": "Yes. PSA makes every attempt to honor requests for a specific anesthesia provider on the day of surgery. However, please keep in mind that due to the complexity of our daily scheduling it may not be possible to honor your request. If you have a specific request please notify our office at 404-257-1415 as early as possible prior to your planned surgery."}
+        ]
+    }
+]

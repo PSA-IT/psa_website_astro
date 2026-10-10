@@ -1,0 +1,318 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { img } from '../lib/images.js';
+import { site } from '../data/site.js';
+
+const sections = [
+  ['our-history', 'Our history'],
+  ['values', 'Mission and values'],
+  ['director_message', "Director's message"],
+  ['psa_in_action', 'PSA in action'],
+  ['compliance', 'Compliance'],
+  ['privacy_statement', 'Privacy'],
+];
+
+// Full-size award images live in public/img so these links keep working.
+const recognition = [
+  ['2025', 'Atlanta Business Chronicle: Best Places to Work', '/img/2023(2).webp'],
+  ['2025', 'Castle Connolly Top Doctors: Drs. Apatov, Au, Briesacher, Guidry, Haluski, Harkins, Hamilton, Hartney-Baucom, Hyatt, Kahnke, Krueth, Mitter, Moore, Sivanesan, Yao and York', '/img/Top_Doctors_2025.webp'],
+  ['2024', 'Castle Connolly Top Doctors: Drs. Apatov (Rising Star), Au, Briesacher, Guidry, Haluski, Hamilton, Hartney-Baucom, Hyatt, Krueth, Mitter, Yao and York', '/img/award-top docs 2024-castle.webp'],
+  ['2024', 'Atlanta Business Chronicle: Best Places to Work', '/img/award-bestplacework-2023-2024.webp'],
+  ['2023', 'Atlanta Business Chronicle: Best Places to Work', '/img/award-bestplacework.webp'],
+  ['2023', 'Atlanta Magazine Top Doctors: Drs. Hartney-Baucom, Stephenson, Sween and York', '/img/award-combined-top docs 2023.webp'],
+  ['2023', 'Castle Connolly Top Doctors: Drs. Au, Hartney-Baucom, Briesacher, Guidry, Haluski, Hamilton, Hyatt, Yao and York', '/img/award-combined-top docs 2023.webp'],
+  ['2022', 'Atlanta Magazine Top Doctors: Drs. Hartney-Baucom, Haluski, Stephenson, Sween and York', '/img/award-top docs 2022.webp'],
+  ['2022', 'Castle Connolly Top Doctors: Dr. York', '/img/award-top docs 2022.webp'],
+];
+---
+<Base title="About us" description="The history, mission and values of Physician Specialists in Anesthesia, a physician-owned anesthesia group serving Atlanta since 1979.">
+  <PageHeader
+    title="About PSA"
+    intro="A physician-owned anesthesia group, founded to serve Saint Joseph's Hospital of Atlanta and now caring for patients across the metro area."
+  >
+    <nav class="jump" aria-label="On this page">
+      <ul>{sections.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul>
+    </nav>
+  </PageHeader>
+
+  <section id="our-history" class="section">
+    <div class="wrap split">
+      <div>
+        <h2>Our history</h2>
+        <div class="founders">
+          <figure>
+            <Image src={img('/img/blog/cat-post/DrMogelnicki_3.webp')} alt="Dr. Stan Mogelnicki" width={100} />
+            <figcaption>Dr. Stan Mogelnicki</figcaption>
+          </figure>
+          <figure>
+            <Image src={img('/img/blog/cat-post/DrChambers_3.webp')} alt="Dr. Donn Chambers" width={100} />
+            <figcaption>Dr. Donn Chambers</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="measure">
+        <p>
+          Physician Specialists in Anesthesia was founded in 1979 by Dr. Stan Mogelnicki and Dr. Donn
+          Chambers when Saint Joseph's Hospital of Atlanta moved from its historic site in downtown
+          Atlanta to its new location in suburban north Atlanta. Drs. Mogelnicki and Chambers assembled
+          a small group of talented cardiovascular anesthesiologists, which became the nucleus of the
+          present-day group.
+        </p>
+        <p>
+          PSA has enjoyed a steady increase in the size and diversity of its physician staff. Owing to
+          its primary practice location at Emory Saint Joseph's Hospital, the group maintains as its
+          primary areas of expertise cardiovascular and thoracic anesthesia, with emphasis on invasive
+          hemodynamic monitoring and perioperative echocardiography. Other areas of special expertise
+          include critical care medicine, regional anesthesia, acute pain management, and anesthesia
+          for specialty surgery (general, orthopaedic, plastic surgery, surgical oncology,
+          otolaryngology, neurosurgery and geriatric).
+        </p>
+        <p>
+          We have broadened our expertise to include outpatient anesthesia and the management of
+          ambulatory surgery center anesthesia departments. Through optimum staffing models,
+          continuous quality improvement, best practices and a strong cost-containment culture, PSA has
+          helped organizations provide the highest-quality ambulatory surgical care while being
+          fiscally responsible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="values" class="section section--mist">
+    <div class="wrap split">
+      <h2>Mission and values</h2>
+      <div class="measure">
+        <dl class="values">
+          <dt>Mission</dt>
+          <dd>We serve the greater Atlanta community by delivering compassionate, high-quality anesthesia care that promotes healing and reduces human suffering.</dd>
+          <dt>Vision</dt>
+          <dd>We will remain the leading anesthesia organization in Atlanta and Georgia through our commitment to a culture of service, clinical excellence and corporate integrity.</dd>
+          <dt>Core values</dt>
+          <dd>Culture of service. Clinical excellence. Corporate integrity.</dd>
+        </dl>
+
+        <h3 class="rec-title">Awards and recognition</h3>
+        <p>We are proud to have received recognition for our providers and our workplace. Here is a recent sampling.</p>
+        <ul class="linklist recognition">
+          {recognition.map(([year, label, href]) => (
+            <li><a href={encodeURI(href)} target="_blank" rel="noopener"><span><strong>{year}</strong> {label}</span></a></li>
+          ))}
+        </ul>
+        <p><a href="/awards">See all awards and patient comments</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="director_message" class="section">
+    <div class="wrap split">
+      <div>
+        <h2>A message from our director</h2>
+        <Image class="director" src={img('/img/bios/Dr_Stephenson2.webp')} alt="Dr. John H. Stephenson" width={220} densities={[1, 2]} />
+      </div>
+      <div class="measure letter">
+        <p>
+          Welcome to Physician Specialists in Anesthesia, P.C. ("PSA")! Whether you are a patient,
+          prospective team member, prospective surgical or facility partner, or a community member, we
+          are delighted that you are here. Since its founding in 1980, we have been committed to
+          maintaining a culture of service, clinical excellence, and corporate integrity, and we have
+          become a leading provider of adult anesthesiology services to some of the finest healthcare
+          organizations in the Southeast. This success stems not only from the high quality of our
+          physicians, exceptional advanced care providers, and dedicated support staff but also from
+          the remarkable excellence of our partner organizations. PSA was born to serve the
+          anesthesiology and perioperative services needs of Saint Joseph's Hospital of Atlanta upon its
+          historic 1980 move to the northern perimeter of Atlanta. The synergy between Saint Joseph's
+          and PSA in the 1980s and 1990s helped both organizations earn sterling reputations from
+          Atlanta's patients and doctors. These reputations soared higher upon Saint Joseph's joining
+          Emory Healthcare, one of the Southeast's largest and most respected academic and community
+          health systems. As a result, Emory Saint Joseph's Hospital is now a critical piece of the
+          Emory Healthcare system, and PSA couldn't be more proud of its contributions there and of its
+          members' ability to contribute to the success of the entire Emory Healthcare system.
+        </p>
+        <p>
+          PSA's other community partners are no less prestigious. For example, PSA has been the
+          exclusive partner of Resurgens Orthopaedics and United Surgical Partners International (USPI,
+          now a division of Tenet Healthcare) since the early 1990s at its flagship four-operating-room
+          orthopaedic surgery center on the campus of Emory Saint Joseph's Hospital — a center of
+          technical innovation in outpatient total joint reconstruction, sports medicine, spine care,
+          and the full spectrum of orthopaedic care. Most recently, PSA is pleased to partner with
+          Northwest Ear Nose and Throat, a premier ENT surgical practice serving metro Atlanta's rapidly
+          growing northwest and Buckhead areas.
+        </p>
+        <p>
+          PSA would be nothing without its most valuable assets, its people. PSA team members serve in
+          varied clinical and advisory roles within our health system and facilities, including
+          advanced cardiothoracic surgery and cardiology service lines, critical care medicine, acute
+          pain medicine, and the general anesthetic care of adults and children. In addition, our team
+          members have served in honored leadership roles in every significant anesthesiology and
+          anesthesia organization in the United States, including the American Society of
+          Anesthesiologists and the American Board of Anesthesiology, among many others.
+        </p>
+        <p>
+          As an organization, PSA's mission is to serve the greater Atlanta and Georgia communities by
+          delivering compassionate, high-quality anesthesia care that promotes healing and reduces
+          human suffering. That mission links us inextricably with our principal hospital partner,
+          Atlanta's first faith-based and longest-serving hospital, whose mission is the same today as
+          it was over 140 years ago — to provide compassionate care, especially to those in need. As
+          such, the needs of our patients and our community come before all else, and we believe in
+          community over competition for the betterment of society, our community, and humanity.
+        </p>
+        <p>We thank you for the opportunity to serve you. Please let us hear from you.</p>
+        <p class="signature">
+          <span class="sig-name">John H. Stephenson, M.D., FASA</span>
+          Chair and Medical Director<br />
+          Physician Specialists in Anesthesia, P.C.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="psa_in_action" class="section section--mist">
+    <div class="wrap split">
+      <h2>PSA in action</h2>
+      <div class="measure">
+        <h3>Our enduring commitment to Saint Joseph's Mercy Care</h3>
+        <p>
+          Physician Specialists in Anesthesia is proud to continue its longstanding philanthropic
+          commitment to Mercy Care — Atlanta's leading federally qualified health center and the
+          city's only healthcare-for-the-homeless program. In a spirit of tradition and responsibility,
+          PSA proudly designates Mercy Care as its official charity partner.
+        </p>
+        <h4>A consistent, multi-decade commitment</h4>
+        <p>
+          Over the past four decades, PSA physicians and employees together have contributed more than
+          half a million dollars to Mercy Care and its mission of delivering high-quality,
+          compassionate care to Atlanta's underserved communities.
+        </p>
+        <h4>Outreach that builds trust</h4>
+        <p>
+          Mercy Care's Street Medicine team exemplifies compassionate, high-value care and is
+          recognized for "bringing healthcare where it's needed most." PSA is honored to support this
+          outreach that builds trust, promotes healing and restores dignity to our often-forgotten
+          neighbors in Atlanta.
+          <a href="https://www.mercyatlanta.org" rel="noopener">Learn more about Mercy Care's Street Medicine program</a>.
+        </p>
+        <h4>Why this matters to PSA</h4>
+        <p>
+          Just as Mercy Care delivers integrated medical, dental, behavioral and social services with
+          respect and humanity, PSA believes in the power of skilled care to transform communities —
+          not just in the operating room, but on the streets. By consistently channeling resources into
+          Street Medicine, PSA helps Mercy Care sustain and evolve its programs, ensuring continuity of
+          care for those it serves.
+        </p>
+        <p>
+          We invite colleagues, partners and team members to join us in supporting Mercy Care's mission
+          through volunteering, advocacy and financial contributions.
+        </p>
+        <p><a class="btn btn--ghost" href="https://mercyatlanta.org/volunteer/" rel="noopener">Give to or volunteer for Mercy Care</a></p>
+
+        <hr />
+
+        <h3>Jimmy Lunsford, PA-C, CAA, selected for Georgia's GA-3 Disaster Medical Assistance Team</h3>
+        <p>
+          PSA Associate Chief Anesthetist Jimmy Lunsford has been selected to serve as a physician
+          assistant with the GA-3 DMAT (Disaster Medical Assistance Team). Serving with a DMAT is
+          something Jimmy has worked toward since 2005, after seeing first-hand the devastating effects
+          of Hurricane Katrina and volunteering in Slidell and New Orleans with interior demolition of
+          flood-ravaged homes and a church.
+        </p>
+        <blockquote>
+          "During disasters and emergencies — and even during large-scale national security events —
+          the need for medical care can quickly overwhelm the system. NDMS Disaster Medical Assistance
+          Teams (DMATs) may be deployed to get people the medical care they need when seconds count."
+        </blockquote>
+        <p>
+          Jimmy is currently the only PA in the Emory Healthcare system serving on a Georgia DMAT. PSA is
+          very proud of Jimmy's work, serving not only our patients but the larger Georgia community.
+          <a href="https://www.phe.gov/Preparedness/responders/ndms/ndms-teams/Pages/dmat.aspx" rel="noopener">More about Disaster Medical Assistance Teams</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="compliance" class="section">
+    <div class="wrap split">
+      <h2>Compliance</h2>
+      <div class="measure">
+        <p>
+          Physician Specialists in Anesthesia, P.C. is committed to compliance with health care law. To
+          that end, PSA has enacted a compliance program to ensure that our company complies with all
+          applicable federal, state and third-party payor laws, rules, regulations and policies.
+        </p>
+        <p>
+          <strong>Report a question, concern or complaint anonymously:</strong>
+          <a href="https://forms.office.com/r/YwwcpEsgk1" target="_blank" rel="noopener">anonymous compliance reporting form</a>
+        </p>
+        <div class="contacts">
+          <div>
+            <h4>Compliance officers</h4>
+            <ul><li>Dr. John Stephenson</li><li>Dr. Julius Hamilton</li><li>Lynn Epps</li></ul>
+          </div>
+          <div>
+            <h4>Practice administrator</h4>
+            <ul><li>Lynn Epps</li></ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p>
+              <a href={`mailto:${site.emails.compliance}`}>{site.emails.compliance}</a><br />
+              Phone <a href={site.phoneHref}>{site.phone}</a><br />
+              Fax {site.fax}<br />
+              {site.address[0]}<br />{site.address[1]}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy_statement" class="section section--mist">
+    <div class="wrap split">
+      <h2>Privacy</h2>
+      <div class="measure">
+        <!-- TODO: replace with PSA's official privacy statement / Notice of Privacy Practices. -->
+        <p>
+          For questions about how PSA handles your personal and health information, contact our
+          compliance team at <a href={`mailto:${site.emails.compliance}`}>{site.emails.compliance}</a>
+          or call <a href={site.phoneHref}>{site.phone}</a>.
+        </p>
+        <ul class="linklist">
+          <li><a href="/patient_forms/Patient_Rights_and_Responsibilities.pdf"><span>Patient rights and responsibilities</span><span class="hint">PDF</span></a></li>
+          <li><a href="/patient_forms/PSA%20-%20No%20Surprises%20Disclosure.pdf"><span>No Surprises Act billing disclosure</span><span class="hint">PDF</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .jump { margin-top: 2rem; }
+  .jump ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+  .jump li { margin: 0; }
+  .jump a { font-weight: 550; }
+
+  .founders { display: flex; gap: 1.25rem; margin-top: 1rem; }
+  .founders figure { margin: 0; }
+  .founders img { width: 100px; border-radius: var(--radius); }
+  .founders figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; max-width: 100px; line-height: 1.3; }
+
+  .values dt { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; margin-top: 1.25rem; }
+  .values dt:first-child { margin-top: 0; }
+  .values dd { margin: 0.25rem 0 0; }
+  .rec-title { margin-top: 3rem; }
+  .recognition a span { font-size: 0.975rem; }
+  .recognition strong { color: var(--blue); margin-right: 0.4rem; font-variant-numeric: tabular-nums; }
+
+  :global(.director) { width: 100%; max-width: 220px; border-radius: var(--radius); margin-top: 0.5rem; }
+  .letter p { font-family: var(--serif); font-size: 1.15rem; line-height: 1.7; }
+  .letter .signature { font-family: var(--sans); font-size: 1rem; color: var(--muted); }
+  .sig-name { display: block; color: var(--ink); font-weight: 650; }
+
+  hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
+  blockquote { margin: 0 0 1rem; padding-left: 1.25rem; border-left: 3px solid var(--blue); color: var(--muted); font-style: italic; }
+
+  .contacts { display: grid; gap: 1.5rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); margin-top: 2rem; }
+  .contacts h4 { margin-bottom: 0.5rem; }
+  .contacts ul { padding-left: 1.1rem; }
+</style>

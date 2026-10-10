@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const locations = [
+  { name: "Emory Saint Joseph's Hospital", place: 'Atlanta, GA', href: 'https://www.emoryhealthcare.org/locations/hospitals/emory-saint-josephs-hospital/' },
+  { name: "Resurgens Orthopaedics, St. Joseph's ASC", place: 'Atlanta, GA', href: 'https://www.resurgens.com/orthopedics-in-sandy-springs' },
+  { name: 'Resurgens Orthopaedics', place: 'Lawrenceville, GA', href: 'https://www.resurgens.com/orthopedics-lawrenceville-ga' },
+  { name: 'Northwest ENT and Allergy Center', place: 'Woodstock and Buckhead', href: 'https://nw-ent.com/locations' },
+  { name: 'Metro Atlanta Gastroenterology', place: 'Atlanta, GA', href: '/mae', internal: true },
+  { name: 'Kaiser Permanente (Southeast Permanente Group)', place: 'Metro Atlanta', href: 'https://healthy.kaiserpermanente.org/georgia/doctors-locations#/simple-form' },
+];
+
+const services = [
+  {
+    title: 'Hospital-based anesthesia',
+    body: 'Our hospital-based services include general anesthesia, regional anesthesia, acute pain coverage and critical care for inpatient and outpatient procedures. Our physicians work closely with surgeons and the rest of the healthcare team so that patients receive the best possible care.',
+  },
+  {
+    title: 'Ambulatory and office-based anesthesia',
+    body: 'We provide anesthesia for ambulatory and office-based procedures such as colonoscopies and endoscopies. Our physicians have the expertise and equipment to keep patients comfortable and safe throughout the procedure.',
+  },
+  {
+    title: 'Consulting for facilities and anesthesia groups',
+    body: 'We help hospitals and other healthcare facilities improve their anesthesia services. Our physicians and administrative staff offer cost analysis based on billable and revenue data, staffing assessments that ensure adequate coverage while minimizing overtime, and leadership and structuring recommendations for anesthesia groups.',
+  },
+];
+---
+<Base title="Services and locations" description="Hospital-based, ambulatory and office-based anesthesia, plus consulting, at Emory Saint Joseph's Hospital and partner surgery centers in metro Atlanta.">
+  <PageHeader
+    title="Services and locations"
+    intro="Safe, effective, individualized anesthesia care in hospital, ambulatory and office settings. We're committed partners in each setting, contributing to governance and patient safety."
+  />
+
+  <section class="section">
+    <div class="wrap split">
+      <h2>What we do</h2>
+      <div class="services">
+        {services.map((s) => (
+          <article>
+            <h3>{s.title}</h3>
+            <p class="measure">{s.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mist" id="locations">
+    <div class="wrap split">
+      <h2>Where we provide care</h2>
+      <div>
+        <ul class="linklist">
+          {locations.map((l) => (
+            <li>
+              <a href={l.href} {...(l.internal ? {} : { target: '_blank', rel: 'noopener' })}>
+                <span>{l.name}</span>
+                <span class="hint">{l.place}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="small muted">Links open each facility's own website, except Metro Atlanta Gastroenterology, which has a patient page on our site.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .services article + article { margin-top: 2.25rem; padding-top: 2.25rem; border-top: 1px solid var(--line); }
+  .services p { margin: 0; }
+  .linklist a span:first-child { color: var(--blue); font-weight: 550; }
+</style>

@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../data/site.js';
+---
+<Base title="Contact us" description="Contact the Physician Specialists in Anesthesia business office in Atlanta: phone, fax, email and directions.">
+  <PageHeader
+    title="Contact us"
+    intro="Call or email our business office with any questions, and we will direct you to the right person."
+  />
+
+  <section class="section">
+    <div class="wrap contact-grid">
+      <div class="details">
+        <h2>Business office</h2>
+        <address>
+          {site.legalName}<br />
+          {site.address[0]}<br />
+          {site.address[1]}
+        </address>
+        <p><a href={site.directions} target="_blank" rel="noopener">Get driving directions</a></p>
+
+        <dl class="lines">
+          <div><dt>Phone</dt><dd><a href={site.phoneHref}>{site.phone}</a></dd></div>
+          <div><dt>Fax</dt><dd>{site.fax}</dd></div>
+          <div><dt>General questions</dt><dd><a href={`mailto:${site.emails.info}`}>{site.emails.info}</a></dd></div>
+          <div><dt>Billing and medical records</dt><dd><a href="/pt_info#billing">Billing information</a></dd></div>
+          <div><dt>Compliance</dt><dd><a href={`mailto:${site.emails.compliance}`}>{site.emails.compliance}</a></dd></div>
+          <div><dt>Recruiting</dt><dd><a href={`mailto:${site.emails.recruiting}`}>{site.emails.recruiting}</a></dd></div>
+        </dl>
+      </div>
+
+      <div class="map">
+        <iframe
+          title="Map showing the PSA business office at 5671 Peachtree Dunwoody Road, Atlanta"
+          src={site.mapEmbed}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-grid { display: grid; gap: 3rem; }
+  @media (min-width: 56rem) { .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: start; } }
+  address { font-style: normal; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  .lines { margin: 2rem 0 0; border-top: 1px solid var(--line); }
+  .lines > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--line); }
+  .lines dt { color: var(--muted); }
+  .lines dd { margin: 0; overflow-wrap: anywhere; }
+  .map iframe { width: 100%; aspect-ratio: 4 / 3; min-height: 20rem; border: 1px solid var(--line); border-radius: var(--radius); display: block; }
+</style>

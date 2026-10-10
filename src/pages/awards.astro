@@ -1,0 +1,163 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import awards from '../data/awardsData.json';
+import testimonials from '../data/testimonials.json';
+import physicians from '../data/physicians.json';
+import { img, slugFor } from '../lib/images.js';
+
+const slugs = new Set(physicians.map((p) => slugFor(p.name)));
+const shortName = (n) => n.replace(/,?\s*(M\.D\.|D\.O\.|FASA|M\.P\.H\.)/g, '').trim();
+
+const physicianAwards = Object.entries(awards.employeeAwards).map(([name, a]) => ({
+  name,
+  logo: a.img,
+  years: Object.entries(a.years).sort(([x], [y]) => Number(y) - Number(x)),
+}));
+
+const comments = [...testimonials]
+  .filter((t) => t.quote && t.quote.trim())
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+const FIRST = 12;
+const monthYear = (iso) => {
+  const d = new Date(`${iso}T12:00:00`);
+  return isNaN(d) ? '' : d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+};
+---
+<Base title="Awards and recognition" description="Best Places to Work honors, Top Doctor awards for PSA physicians, and comments from our patients.">
+  <PageHeader
+    title="Awards and recognition"
+    intro="Recognition for our workplace and our physicians, and what patients tell us about their care."
+  >
+    <nav class="jump" aria-label="On this page">
+      <ul>
+        <li><a href="#workplace">Workplace</a></li>
+        <li><a href="#physicians">Physician awards</a></li>
+        <li><a href="#comments">Patient comments</a></li>
+      </ul>
+    </nav>
+  </PageHeader>
+
+  <section id="workplace" class="section">
+    <div class="wrap split">
+      <h2>Best Places to Work</h2>
+      <div>
+        <p class="measure">
+          Atlanta Business Chronicle has recognized PSA as one of Atlanta's Best Places to Work, a
+          reflection of the culture we've built together. Our greatest strength is our people, and we
+          remain committed to supporting, valuing and investing in our employees every day.
+        </p>
+        <ul class="workplace">
+          {awards.companyAwards.map((a) => (
+            <li>
+              <Image src={img(a.src)} alt={a.alt} width={220} densities={[1, 2]} />
+              <span>{a.year}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="physicians" class="section section--mist">
+    <div class="wrap split">
+      <h2>Physician awards</h2>
+      <div class="orgs">
+        {physicianAwards.map((org) => (
+          <div class="org">
+            <Image class="org-logo" src={img(org.logo)} alt={org.name} width={240} densities={[1, 2]} />
+            {org.years.map(([year, names], i) => (
+              <details class="qa" open={i === 0}>
+                <summary>{year} <span class="count">{names.length} {names.length === 1 ? 'physician' : 'physicians'}</span></summary>
+                <ul class="names answer">
+                  {names.map((n) => {
+                    const s = slugFor(n);
+                    return <li>{slugs.has(s) ? <a href={`/staff#${s}`}>{shortName(n)}</a> : shortName(n)}</li>;
+                  })}
+                </ul>
+              </details>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="comments" class="section">
+    <div class="wrap">
+      <div class="split">
+        <h2>From our patients</h2>
+        <p class="measure muted">
+          Comments from patient surveys about their anesthesia care, shared anonymously. Most recent first.
+        </p>
+      </div>
+      <ul class="comments" data-comments>
+        {comments.map((t, i) => (
+          <li hidden={i >= FIRST}>
+            <blockquote>{t.quote.trim()}</blockquote>
+            <p class="meta">{[t.facility, monthYear(t.date)].filter(Boolean).join(', ')}</p>
+          </li>
+        ))}
+      </ul>
+      {comments.length > FIRST && (
+        <p class="more">
+          <button class="btn btn--ghost" type="button" data-more>
+            Show more comments
+          </button>
+          <span class="muted small" data-status aria-live="polite">Showing {FIRST} of {comments.length}</span>
+        </p>
+      )}
+    </div>
+  </section>
+</Base>
+
+<script>
+  const list = document.querySelector('[data-comments]');
+  const button = document.querySelector('[data-more]');
+  const status = document.querySelector('[data-status]');
+  button?.addEventListener('click', () => {
+    const hidden = list ? [...list.querySelectorAll('li[hidden]')] : [];
+    hidden.slice(0, 24).forEach((li) => li.removeAttribute('hidden'));
+    const total = list?.children.length ?? 0;
+    const shown = total - (list?.querySelectorAll('li[hidden]').length ?? 0);
+    if (status) status.textContent = `Showing ${shown} of ${total}`;
+    if (shown >= total) button.remove();
+  });
+</script>
+
+<style>
+  .jump { margin-top: 2rem; }
+  .jump ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+  .jump li { margin: 0; }
+  .jump a { font-weight: 550; }
+
+  .workplace { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: 2rem 3rem; }
+  .workplace li { margin: 0; display: grid; justify-items: center; gap: 0.75rem; }
+  .workplace :global(img) { width: auto; height: 11rem; object-fit: contain; }
+  .workplace span { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: var(--blue); }
+
+  .orgs { display: grid; gap: 3rem; }
+  @media (min-width: 64rem) { .orgs { grid-template-columns: 1fr 1fr; } }
+  .org :global(.org-logo) { height: 4.5rem; width: auto; object-fit: contain; margin-bottom: 1.25rem; mix-blend-mode: multiply; }
+  .count { font-weight: 400; color: var(--muted); font-size: 0.9rem; margin-left: 0.5rem; }
+  .names { list-style: none; padding: 0 0 1.25rem; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .names li { margin: 0; }
+  .names li > * , .names li:not(:has(a)) {
+    display: inline-block; padding: 0.3rem 0.75rem; border: 1px solid var(--line);
+    border-radius: 999px; font-size: 0.9rem; text-decoration: none; background: var(--white);
+  }
+  .names a:hover { border-color: var(--blue); }
+
+  .comments {
+    list-style: none; padding: 0; margin: 2.5rem 0 0;
+    columns: 3 18rem; column-gap: 2.5rem;
+  }
+  .comments li { break-inside: avoid; margin: 0 0 2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+  .comments li[hidden] { display: none; }
+  .comments blockquote { margin: 0; font-family: var(--serif); font-size: 1.1rem; line-height: 1.5; }
+  .comments blockquote::before { content: '“'; }
+  .comments blockquote::after { content: '”'; }
+  .meta { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.875rem; }
+  .more { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1rem; }
+</style>
