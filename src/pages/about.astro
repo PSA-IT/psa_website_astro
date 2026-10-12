@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import { img } from '../lib/images.js';
 import { site } from '../data/site.js';
+import { recognition, recognitionId } from '../data/recognition.js';
 
 const sections = [
   ['our-history', 'Our history'],
@@ -14,19 +15,7 @@ const sections = [
   ['privacy_statement', 'Privacy'],
 ];
 
-// Full-size award images live in public/img so these links keep working.
-const recognition = [
-  ['2026', 'Atlanta Business Chronicle: Best Places to Work', '/img/bptw-2026.svg'],
-  ['2025', 'Atlanta Business Chronicle: Best Places to Work', '/img/2023(2).webp'],
-  ['2025', 'Castle Connolly Top Doctors: Drs. Apatov, Au, Briesacher, Guidry, Haluski, Harkins, Hamilton, Hartney-Baucom, Hyatt, Kahnke, Krueth, Mitter, Moore, Sivanesan, Yao and York', '/img/Top_Doctors_2025.webp'],
-  ['2024', 'Castle Connolly Top Doctors: Drs. Apatov (Rising Star), Au, Briesacher, Guidry, Haluski, Hamilton, Hartney-Baucom, Hyatt, Krueth, Mitter, Yao and York', '/img/award-top docs 2024-castle.webp'],
-  ['2024', 'Atlanta Business Chronicle: Best Places to Work', '/img/award-bestplacework-2023-2024.webp'],
-  ['2023', 'Atlanta Business Chronicle: Best Places to Work', '/img/award-bestplacework.webp'],
-  ['2023', 'Atlanta Magazine Top Doctors: Drs. Hartney-Baucom, Stephenson, Sween and York', '/img/award-combined-top docs 2023.webp'],
-  ['2023', 'Castle Connolly Top Doctors: Drs. Au, Hartney-Baucom, Briesacher, Guidry, Haluski, Hamilton, Hyatt, Yao and York', '/img/award-combined-top docs 2023.webp'],
-  ['2022', 'Atlanta Magazine Top Doctors: Drs. Hartney-Baucom, Haluski, Stephenson, Sween and York', '/img/award-top docs 2022.webp'],
-  ['2022', 'Castle Connolly Top Doctors: Dr. York', '/img/award-top docs 2022.webp'],
-];
+
 ---
 <Base title="About us" description="The history, mission and values of Physician Specialists in Anesthesia, a physician-owned anesthesia group serving Atlanta since 1979.">
   <PageHeader
@@ -97,9 +86,9 @@ const recognition = [
         <h3 class="rec-title">Awards and recognition</h3>
         <p>We are proud to have received recognition for our providers and our workplace. Here is a recent sampling.</p>
         <ul class="linklist recognition">
-          {recognition.map(([year, label, href]) => (
-            <li><a href={encodeURI(href)} target="_blank" rel="noopener"><span><strong>{year}</strong> {label}</span></a></li>
-          ))}
+             {recognition.map(([year, label]) => (
+                <li><a href={`/recognition/${recognitionId(year, label)}`}><span><strong>{year}</strong> {label}</span></a></li>
+              ))}
         </ul>
         <p><a href="/awards">See all awards and patient comments</a></p>
       </div>

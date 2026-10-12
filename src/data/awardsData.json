@@ -2,7 +2,8 @@
   "companyAwards": [
     { "src": "/img/award-bestplacework-med.png", "alt": "Best Places To Work 2023", "year": 2023 },
     { "src": "/img/award-bestplacework-2023-2024.png", "alt": "Best Places To Work 2024", "year": 2024 },
-    { "src": "/img/2023(2).png", "alt": "Best Places To Work 2025", "year": 2025 }
+    { "src": "/img/2023(2).png", "alt": "Best Places To Work 2025", "year": 2025 },
+    { "src": "img/bptw-2026.svg", "alt": "Best Places to Work 2026", "year": 2026}
   ],
 
   "employeeAwards": {

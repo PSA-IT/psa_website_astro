@@ -1,0 +1,55 @@
+---
+// One page per award in src/data/recognition.js, e.g.
+// /recognition/2026-atlanta-business-chronicle-best-places-to-work
+import Base from '../../layouts/Base.astro';
+import { recognition, recognitionId } from '../../data/recognition.js';
+
+export function getStaticPaths() {
+  return recognition.map(([year, label, file]) => ({
+    params: { id: recognitionId(year, label) },
+    props: { year, label, file },
+  }));
+}
+
+const { year, label, file } = Astro.props;
+const [award, honorees] = label.split(/:\s*(?=Drs?\.)/);
+---
+<Base title={`${year} ${award}`} description={`${year} ${label}. Physician Specialists in Anesthesia awards and recognition.`}>
+  <section class="section award-page">
+    <div class="wrap">
+      <p class="back"><a href="/about#values">Back to awards and recognition</a></p>
+
+      <h1>{year} {award}</h1>
+      {honorees && <p class="lede measure">{honorees}</p>}
+
+      <figure class="frame">
+        <img src={encodeURI(file)} alt={`${year} ${award}`} />
+      </figure>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .award-page { background: var(--mist); }
+  .back { margin-bottom: 1.5rem; font-weight: 550; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+
+  /* The same white frame for every award, whatever the file type. */
+  .frame {
+    margin: 2rem 0 0;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .frame img {
+    width: min(100%, 40rem);   /* SVGs have no fixed size, so give every award the same width */
+    height: auto;
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+</style>
