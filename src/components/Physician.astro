@@ -10,14 +10,14 @@ const asList = (v) => (Array.isArray(v) ? v : [v]);
 
 // Field order and labels for the "Education and credentials" panel.
 const fields = [
+  ['fellowship', 'Fellowship'],
+  ['residency', 'Residency'],
+  ['internship', 'Internship'],
   ['undergraduate', 'Undergraduate'],
   ['graduate', 'Graduate school'],
   ['graduateStudies', 'Graduate studies'],
   ['medicalSchool', 'Medical school'],
   ['mph', 'M.P.H.'],
-  ['internship', 'Internship'],
-  ['residency', 'Residency'],
-  ['fellowship', 'Fellowship'],
   ['boardCertifications', 'Board certifications'],
   ['professionalMemberships', 'Professional memberships'],
 ].filter(([key]) => has(p[key]));
