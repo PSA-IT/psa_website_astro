@@ -32,8 +32,8 @@ const activityGroups = Array.isArray(oa)
     : [];
 
 const slug = slugFor(p.name);
-const summary = has(p.fellowship) ? asList(p.fellowship)[0] : has(p.residency) ? asList(p.residency)[0] : p.medicalSchool;
-const summaryLabel = has(p.fellowship) ? 'Fellowship' : has(p.residency) ? 'Residency' : 'Medical school';
+const summary =  has(p.residency) ? asList(p.residency)[0] : has(p.fellowship) ? asList(p.fellowship)[0] : p.medicalSchool;
+const summaryLabel = has(p.residency) ? 'Residency' : has(p.fellowship) ? 'Fellowship' :  'Medical school';
 ---
 <article class="doc" id={slug}>
   <Image
