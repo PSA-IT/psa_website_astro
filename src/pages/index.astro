@@ -13,9 +13,11 @@ const tasks = [
 ];
 
 const partners = [
-  { name: 'Resurgens Orthopaedics', src: '/img/resurgens.png' },
-  { name: 'Northwest ENT and Allergy Center', src: '/img/nwent.png' },
-  { name: 'Metro Atlanta Gastroenterology', src: '/img/metroATL.png' },
+  { name: 'Resurgens Orthopaedics', src: '/img/resurgens.png', link: 'https://www.resurgens.com/orthopedics-in-sandy-springs' },
+  { name: 'United Surgical Partners International', src: '/img/uspi-modern-logo.svg', link:'https://www.uspi.com/'},
+  { name: 'Northwest ENT and Allergy Center', src: '/img/nwent.png', link:'https://nw-ent.com/locations' },
+  { name: 'Metro Atlanta Gastroenterology', src: '/img/MAE.jpg', link:'https://www.metroatlantagastro.com/' },
+  
 ];
 ---
 <Base>
@@ -93,14 +95,18 @@ const partners = [
       <div>
         <ul class="anchors">
           <li>
+          <a href='https://www.emoryhealthcare.org/locations/hospitals/emory-saint-josephs-hospital' >
             <Image src={img('/img/emory-saint-josephs-color.png')} alt="" width={200} />
+          </a>
             <div>
               <h3>Emory Saint Joseph's Hospital</h3>
               <p class="muted">Exclusive anesthesia provider since 1980.</p>
             </div>
           </li>
           <li>
-            <Image src={img('/img/kp-logo.png')} alt="" width={200} />
+          <a href='https://healthy.kaiserpermanente.org/georgia/doctors-locations#/simple-form'>
+            <Image src={img('/img/Kaiser-Permanente-Logo.png')} alt="" width={200} />
+          </a>
             <div>
               <h3>Kaiser Permanente</h3>
               <p class="muted">Exclusive anesthesia provider for the Southeast Permanente Group.</p>
@@ -110,7 +116,7 @@ const partners = [
         <p class="partners-label">We also provide comprehensive anesthesia services for</p>
         <ul class="partners">
           {partners.map((p) => (
-            <li><Image src={img(p.src)} alt={p.name} width={180} /></li>
+            <li><a href={p.link}><Image src={img(p.src)} alt={p.name} width={200} /></a></li>
           ))}
         </ul>
         <p><a href="/services">See all locations and services</a></p>
