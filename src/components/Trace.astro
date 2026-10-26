@@ -1,24 +1,43 @@
 ---
-// A capnography trace — the breathing waveform an anesthesia team watches on
-// every patient. Used as the site's one recurring visual motif.
-interface Props { animate?: boolean; class?: string; }
-const { animate = false, class: className = '' } = Astro.props;
+// A monitor trace used as the site's one recurring visual motif.
+//   type="capno" (default): capnography, the breathing waveform an anesthesia team watches
+//   type="ekg":             an EKG / ECG heartbeat (P wave, QRS spike, T wave)
+interface Props { animate?: boolean; class?: string; type?: 'capno' | 'ekg'; }
+const { animate = false, class: className = '', type = 'capno' } = Astro.props;
 
-// Build a few breaths: flat baseline, quick rise, gently sloping plateau, quick fall.
-let d = 'M0 48 H24';
-let x = 24;
-for (let i = 0; i < 4; i++) {
-  d += ` C${x + 4} 48 ${x + 4} 14 ${x + 10} 14`;      // inspiration → expiration upstroke
-  d += ` C${x + 30} 13 ${x + 60} 11 ${x + 78} 9`;      // alveolar plateau
-  d += ` C${x + 83} 9 ${x + 83} 48 ${x + 88} 48`;      // downstroke
-  x += 88;
-  d += ` H${x + 34}`;
-  x += 34;
+let d = '';
+if (type === 'ekg') {
+  // Five heartbeats on a flat baseline (y = 34). Lower numbers are higher on screen.
+  const base = 34;
+  d = `M0 ${base} H10`;
+  let x = 10;
+  for (let i = 0; i < 5; i++) {
+    d += ` H${x + 8}`;
+    d += ` C${x + 11} ${base} ${x + 12} 28 ${x + 15} 28 C${x + 18} 28 ${x + 19} ${base} ${x + 22} ${base}`; // P wave
+    d += ` H${x + 28}`;                                                                                    // PR segment
+    d += ` L${x + 30} 38 L${x + 34} 4 L${x + 38} 47 L${x + 41} ${base}`;                                   // QRS spike
+    d += ` H${x + 50}`;                                                                                    // ST segment
+    d += ` C${x + 54} ${base} ${x + 56} 23 ${x + 61} 23 C${x + 66} 23 ${x + 68} ${base} ${x + 72} ${base}`; // T wave
+    x += 120;                                                                                              // next beat
+  }
+  d += ' H640';
+} else {
+  // A few breaths: flat baseline, quick rise, gently sloping plateau, quick fall.
+  d = 'M0 48 H24';
+  let x = 24;
+  for (let i = 0; i < 4; i++) {
+    d += ` C${x + 4} 48 ${x + 4} 14 ${x + 10} 14`;      // inspiration → expiration upstroke
+    d += ` C${x + 30} 13 ${x + 60} 11 ${x + 78} 9`;      // alveolar plateau
+    d += ` C${x + 83} 9 ${x + 83} 48 ${x + 88} 48`;      // downstroke
+    x += 88;
+    d += ` H${x + 34}`;
+    x += 34;
+  }
+  d += ' H640';
 }
-d += ' H640';
 ---
 <svg
-  class:list={['trace', { 'trace--draw': animate }, className]}
+  class:list={['trace', { 'trace--draw': animate, 'trace--ekg': type === 'ekg' }, className]}
   viewBox="0 0 640 56"
   preserveAspectRatio="none"
   aria-hidden="true"
@@ -29,6 +48,7 @@ d += ' H640';
 
 <style>
   .trace { display: block; width: 100%; height: 3.5rem; overflow: visible; }
+  .trace--ekg path { stroke-linejoin: miter; stroke-miterlimit: 6; }   /* keep the spike tips sharp */
   path {
     fill: none;
     stroke: var(--blue);
@@ -40,7 +60,7 @@ d += ' H640';
   /* One orchestrated moment: the trace sweeps across once, like a monitor. */
   .trace--draw {
     clip-path: inset(-10% 100% -10% 0);
-    animation: sweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+    animation: sweep 4s cubic-bezier(0.4, 0.4, 0.4, 1) 0.25s forwards;
   }
   @keyframes sweep { to { clip-path: inset(-10% 0 -10% 0); } }
   @media (prefers-reduced-motion: reduce) {
