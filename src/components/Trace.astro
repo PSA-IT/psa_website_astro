@@ -2,25 +2,29 @@
 // A monitor trace used as the site's one recurring visual motif.
 //   type="capno" (default): capnography, the breathing waveform an anesthesia team watches
 //   type="ekg":             an EKG / ECG heartbeat (P wave, QRS spike, T wave)
-interface Props { animate?: boolean; class?: string; type?: 'capno' | 'ekg'; }
-const { animate = false, class: className = '', type = 'capno' } = Astro.props;
+//   beats={8}:              (EKG only) how many heartbeats to draw; more beats = less stretched
+interface Props { animate?: boolean; class?: string; type?: 'capno' | 'ekg'; beats?: number; }
+const { animate = false, class: className = '', type = 'capno', beats = 5 } = Astro.props;
 
 let d = '';
+let width = 640;   // drawing width; grows with the number of EKG beats so each beat keeps its shape
 if (type === 'ekg') {
-  // Five heartbeats on a flat baseline (y = 34). Lower numbers are higher on screen.
+  // Heartbeats on a flat baseline (y = 34). Lower numbers are higher on screen.
+  // Each beat is 120 units wide, so the drawing is 10 + 120 per beat + 10 units wide.
   const base = 34;
+  width = Math.max(640, 20 + beats * 120);   // 5 beats keeps the original 640 width
   d = `M0 ${base} H10`;
   let x = 10;
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < beats; i++) {
     d += ` H${x + 8}`;
     d += ` C${x + 11} ${base} ${x + 12} 28 ${x + 15} 28 C${x + 18} 28 ${x + 19} ${base} ${x + 22} ${base}`; // P wave
     d += ` H${x + 28}`;                                                                                    // PR segment
     d += ` L${x + 30} 38 L${x + 34} 4 L${x + 38} 47 L${x + 41} ${base}`;                                   // QRS spike
     d += ` H${x + 50}`;                                                                                    // ST segment
     d += ` C${x + 54} ${base} ${x + 56} 23 ${x + 61} 23 C${x + 66} 23 ${x + 68} ${base} ${x + 72} ${base}`; // T wave
-    x += 120;                                                                                              // next beat
+    x += 130;                                                                                              // next beat
   }
-  d += ' H640';
+  d += ` H${width}`;
 } else {
   // A few breaths: flat baseline, quick rise, gently sloping plateau, quick fall.
   d = 'M0 48 H24';
@@ -38,7 +42,7 @@ if (type === 'ekg') {
 ---
 <svg
   class:list={['trace', { 'trace--draw': animate, 'trace--ekg': type === 'ekg' }, className]}
-  viewBox="0 0 640 56"
+  viewBox={`0 0 ${width} 56`}
   preserveAspectRatio="none"
   aria-hidden="true"
   focusable="false"
@@ -60,7 +64,7 @@ if (type === 'ekg') {
   /* One orchestrated moment: the trace sweeps across once, like a monitor. */
   .trace--draw {
     clip-path: inset(-10% 100% -10% 0);
-    animation: sweep 4s cubic-bezier(0.4, 0.4, 0.4, 1) 0.25s forwards;
+    animation: sweep 4s cubic-bezier(0.4, 0, 0.4, 1) 0.25s forwards;
   }
   @keyframes sweep { to { clip-path: inset(-10% 0 -10% 0); } }
   @media (prefers-reduced-motion: reduce) {

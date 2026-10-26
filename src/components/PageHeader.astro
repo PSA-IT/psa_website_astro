@@ -9,7 +9,7 @@ const { title, intro } = Astro.props;
     {intro && <p class="lede measure">{intro}</p>}
     <slot />
   </div>
-  <Trace class="page-trace" />
+  <Trace type="ekg" beats={8} class="page-trace" />
 </section>
 
 <style>
