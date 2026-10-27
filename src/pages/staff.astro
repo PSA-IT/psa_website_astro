@@ -68,14 +68,14 @@ const office = [
     <div class="wrap split">
       <h2>Leadership</h2>
       <div>
-        <h3>Board of directors</h3>
+        <h3>Board of Directors</h3>
         <dl class="roles">
           {board.map(([role, name]) => {
             const p = person(name);
             return (<div><dt>{role}</dt><dd>{p.href ? <a href={p.href}>{name}</a> : name}</dd></div>);
           })}
         </dl>
-        <h3 class="next">Clinical leadership</h3>
+        <h3 class="next">Clinical Leadership</h3>
         <dl class="roles">
           {leadership.map(([role, name]) => {
             const p = person(name);
@@ -121,7 +121,7 @@ const office = [
       </div>
 
       <div class="emeritus">
-        <h3>Physicians emeritus</h3>
+        <h3>Physicians Emeritus</h3>
         <p class="measure">PSA honors retired physicians who have made extraordinary contributions to the practice with the status of Physician Emeritus.</p>
         <ul>
           <li>James L. Carlson, M.D.</li>
@@ -135,7 +135,7 @@ const office = [
 
   <section id="clinical-staff" class="section">
     <div class="wrap split">
-      <h2>Clinical staff</h2>
+      <h2>Clinical Staff</h2>
       <div class="measure">
         <p>
           PSA uses the anesthesia care team model: an anesthesiology board-certified physician working
@@ -147,7 +147,7 @@ const office = [
         </p>
         <div class="two">
           <div>
-            <h4>Chief anesthetists</h4>
+            <h4>Chief Anesthetists</h4>
             <ul>
               <li>Katherine L. Hunt, CAA</li>
               <li>Mohammad Pradhan, CAA</li>
@@ -167,7 +167,7 @@ const office = [
   <section id="admin-staff" class="section section--mist">
     <div class="wrap split">
       <div>
-        <h2>Business office</h2>
+        <h2>Business Office</h2>
         <address>
           {site.address[0]}<br />{site.address[1]}
         </address>
