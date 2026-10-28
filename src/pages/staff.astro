@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Physician from '../components/Physician.astro';
 import physicians from '../data/physicians.json';
-import { slugFor, lastName } from '../lib/images.js';
+import { img, slugFor, lastName } from '../lib/images.js';
+import { executives, executiveGroupPhoto } from '../data/executives.js';
 import { site } from '../data/site.js';
 
 const sorted = [...physicians].sort((a, b) => lastName(a.name).localeCompare(lastName(b.name)));
@@ -65,7 +67,41 @@ const office = [
   </PageHeader>
 
   <section id="clinical-divisions" class="section">
-    <div class="wrap split">
+    <div id="executive-team" class="wrap exec">
+      <h2>Executive Team</h2>
+      <div class="exec-grid">
+        <Image
+          class="exec-group"
+          src={img(executiveGroupPhoto.src)}
+          alt={executiveGroupPhoto.alt}
+          width={720}
+          densities={[1, 2]}
+        />
+        <ul class="exec-list">
+          {executives.map((e) => (
+            <li>
+              <Image
+                class="exec-photo"
+                src={img(e.photo)}
+                alt=""
+                width={160}
+                height={160}
+                densities={[1, 2]}
+                fit="cover"
+                position="top"
+              />
+              <p class="exec-name">{e.name}</p>
+              <p class="exec-title">{e.title}</p>
+              <a class="exec-link" href={`/leadership/${slugFor(e.name)}`}>
+                View bio<span class="visually-hidden"> for {e.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="wrap split leadership">
       <h2>Leadership</h2>
       <div>
         <h3>Board of Directors</h3>
@@ -195,6 +231,35 @@ const office = [
   .jump ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
   .jump li { margin: 0; }
   .jump a { font-weight: 550; }
+
+  /* Executive Team: spans the full content width, above the Leadership lists */
+  .exec { margin-bottom: clamp(3rem, 6vw, 4.5rem); }
+  .exec h2 { margin-bottom: 4.5rem; text-align: center; }
+  .exec-grid { display: grid; gap: 2.5rem 3.5rem; align-items: center; }
+  @media (min-width: 56rem) { .exec-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); } }
+  .exec-grid :global(.exec-group) {
+    width: 100%; height: auto; border-radius: 10px;
+    box-shadow: 0 10px 24px -14px rgba(19, 38, 58, 0.35);
+  }
+  .exec-list {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.5rem;
+  }
+  .exec-list li { margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .exec-list :global(.exec-photo) {
+    width: clamp(6.5rem, 14vw, 9rem); height: auto; aspect-ratio: 1; flex: none;
+    border-radius: 50%; object-fit: cover; object-position: top; margin-bottom: 0.85rem;
+    border: 4px solid var(--white); box-shadow: 0 0 0 1px var(--line), 0 10px 20px -12px rgba(19, 38, 58, 0.5);
+  }
+  .exec-list p { margin: 0; }
+  .exec-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; line-height: 1.25; }
+  .exec-title { color: var(--muted); font-size: 0.9rem; line-height: 1.35; margin: 0.25rem 0 0.4rem; }
+  .exec-link { font-size: 0.9rem; font-weight: 600; }
+  /* Divider between the Executive Team and the Leadership lists, aligned with the content edges */
+  .leadership::before {
+    content: ''; grid-column: 1 / -1; border-top: 1px solid var(--line);
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+  }
 
   .roles { margin: 0 0 1rem; border-top: 1px solid var(--line); }
   .roles > div { display: grid; gap: 0.15rem 2rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); }

@@ -299,7 +299,7 @@
     {
       "index": 11,
       "name": "Julius Hamilton, M.D.",
-      "image": "/img/bios/dr_hamilton.webp",
+      "image": "/img/bios/dr_hamilton.jpg",
       "undergraduate": "University of South Carolina, Columbia, SC",
       "medicalSchool": "Medical University of South Carolina, Charleston, SC",
       "residency": "University of Chicago, Chicago, IL",
@@ -461,16 +461,12 @@
     {
         "index": 17,
         "name": "David Moore, M.D.",
-        "image": "/img/bios/dr_moore.webp",
+        "image": "/img/bios/dr_moore.jpg",
         "undergraduate": " University of North Carolina, Chapel Hill, NC",
         "graduateStudies": null,
         "medicalSchool": " Medical College of Georgia, Augusta, GA",
-        "fellowship" : [
-            "Brigham and Women’s Hospital, Boston, MA (Cardiothoracic Anesthesiology)"
-        ],
-        "residency": [
-          "Brigham and Women’s Hospital, Boston, MA"
-        ],
+        "fellowship" : "Brigham and Women’s Hospital, Boston, MA (Cardiothoracic Anesthesiology)",
+        "residency": "Brigham and Women’s Hospital, Boston, MA",
         "boardCertifications": [
           "American Board of Anesthesiology",
           "National Board of Echocardiography - Certification in Advanced Perioperative Transesophageal Echocardiography"
@@ -526,12 +522,8 @@
         "image": "/img/bios/Dr_Sanusi2.webp",
         "undergraduate": " Louisiana Tech University, Ruston, LA",
         "medicalSchool": "Louisiana State University School of Medicine, Shreveport LA",
-        "residency": [
-            "University of South Florida College of Medicine, Tampa FL (Anesthesiology)"
-        ],
-        "fellowship": [
-            "Louisiana State University School of Medicine, Shreveport LA (Obstetric Anesthesiology)"
-        ],
+        "residency": "University of South Florida College of Medicine, Tampa FL (Anesthesiology)",
+        "fellowship": "Louisiana State University School of Medicine, Shreveport LA (Obstetric Anesthesiology)",
         "boardCertifications": [
             "American Board of Anesthesiology"
         ],
@@ -554,12 +546,8 @@
         "image": "/img/bios/Dr_Sivanesan2.webp",
         "undergraduate": null,
         "medicalSchool": "Universiti Kebangsaan Malaysia, Kuala Lumpur, Malaysia",
-        "residency": [
-            "New York Presbyterian Hospital, Weill Cornell Medical Center, New York, NY (Anesthesiology)"
-        ],
-        "fellowship": [
-            "New York Presbyterian Hospital, Weill Cornell Medical Center, New York, NY (Cardiothoracic Anesthesiology)"
-        ],
+        "residency": "New York Presbyterian Hospital, Weill Cornell Medical Center, New York, NY (Anesthesiology)",
+        "fellowship": "New York Presbyterian Hospital, Weill Cornell Medical Center, New York, NY (Cardiothoracic Anesthesiology)",
         "boardCertifications": [
             "American Board of Anesthesiology",
             "National Board of Echocardiography - Diplomate in Advanced Perioperative Transesophageal Echocardiography"
@@ -582,15 +570,11 @@
     {
         "index": 21,
         "name": "John H. Stephenson, M.D., FASA",
-        "image": "/img/bios/dr_stephenson.webp",
+        "image": "/img/bios/dr_stephenson.jpg",
         "undergraduate": "Wake Forest University, Winston Salem, NC",
         "medicalSchool": "University of North Carolina, Chapel Hill, NC",
-        "residency": [
-            "University of Florida, Gainesville, FL"
-        ],
-        "fellowship": [
-            "University of Virginia, Charlottesville, VA"
-        ],
+        "residency": "University of Florida, Gainesville, FL",
+        "fellowship": "University of Virginia, Charlottesville, VA",
         "boardCertifications": [
             "American Board of Anesthesiology (MOCA)",
             "American Board of Anesthesiology - Certificate of Added Qualifications in Pain Management (MOCA)",
@@ -637,12 +621,8 @@
         "image": "/img/bios/Dr_York2.webp",
         "undergraduate": "University of Georgia, Athens, GA",
         "medicalSchool": "Medical College of Georgia, Augusta, GA",
-        "residency": [
-            "Mayo Graduate School of Medicine, Jacksonville, FL Board"
-        ],
-        "fellowship": [
-            
-        ],
+        "residency": "Mayo Graduate School of Medicine, Jacksonville, FL Board",
+        "fellowship": "",
         "boardCertifications": [
             "American Board of Anesthesiology"
         ],
@@ -666,12 +646,8 @@
         "undergraduate": "University of California, Berkeley - Berkeley, CA",
         "medicalSchool": "New York Medical College - Valhalla, NY",
         "mph": "New York Medical College - New York, NY",
-        "residency": [
-            "New York Presbyterian Hospital-Weill Cornell Medical College - New York, NY"
-        ],
-        "fellowship": [
-            "New York Presbyterian Hospital-Weill Cornell Medical College - New York, NY "
-        ],
+        "residency": "New York Presbyterian Hospital-Weill Cornell Medical College - New York, NY",
+        "fellowship": "New York Presbyterian Hospital-Weill Cornell Medical College - New York, NY ",
         "boardCertifications": [
             "American Board of Anesthesiology",
             "National Board of Echocardiography - Examination of Special Competence in Advanced Perioperative Transesophageal Echocardiography (Testamur)"
@@ -695,12 +671,8 @@
         "image": "/img/bios/Dr_Guenther.webp",
         "undergraduate": "Washington University in St. Louis, St. Louis, MO",
         "medicalSchool": "New York Medical College, Valhalla, NY",
-        "residency": [
-            "Emory University, Atlanta, GA"
-        ],
-        "fellowship": [
-            "Emory University, Atlanta, GA (Cardiothoracic Anesthesiology)"
-        ],
+        "residency": "Emory University, Atlanta, GA",
+        "fellowship": "Emory University, Atlanta, GA (Cardiothoracic Anesthesiology)",
         "boardCertifications": [
             "American Board of Anesthesiology",
             "National Board of Echocardiography - Certification in Advanced Perioperative Transesophageal Echocardiography",
@@ -724,12 +696,8 @@
         "image": "/img/bios/Dr_Tull.webp",
         "undergraduate": "University of Washington, Seattle, WA ",
         "medicalSchool": "University of Washington School of Medicine, Seattle, WA ",
-        "residency": [
-            "Stanford University, Palo Alto, CA "
-        ],
-        "fellowship": [
-            "Massachusetts General Hospital/Harvard Medical School (Adult Cardiothoracic Anesthesiology), Boston, MA"
-        ],
+        "residency":"Stanford University, Palo Alto, CA ",
+        "fellowship": "Massachusetts General Hospital/Harvard Medical School (Adult Cardiothoracic Anesthesiology), Boston, MA",
         "boardCertifications": [
             "American Board of Anesthesiology",
             "National Board of Echocardiography - Examination of Special Competence in Advanced Perioperative Transesophageal Echocardiography (Testamur)"
@@ -752,12 +720,8 @@
         "undergraduate": "The University of North Carolina at Chapel Hill, Chapel Hill, NC ",
         "graduateStudies": "Wake Forest University, Winston-Salem, NC",
         "medicalSchool": "The Alabama College of Osteopathic Medicine, Dothan, AL",
-        "residency": [
-            "Tulane University, New Orleans, LA"
-        ],
-        "fellowship": [
-            "Duke University, Durham, NC"
-        ],
+        "residency": "Tulane University, New Orleans, LA",
+        "fellowship": "Duke University, Durham, NC",
         "boardCertifications": [
             "American Board of Anesthesiology",
             "National Board of Echocardiography - Certification in Advanced Perioperative Transesophageal Echocardiography (Diplomate)"
@@ -783,9 +747,7 @@
         "undergraduate": "Emory University, Atlanta, GA",
         "graduateStudies": "",
         "medicalSchool": "University of Wisconsin School of Medicine, Madison, WI",
-        "residency": [
-            "Medical College of Wisconsin, Milwaukee, WI"
-        ],
+        "residency": "Medical College of Wisconsin, Milwaukee, WI",
         "fellowship": [
            
         ],
@@ -817,15 +779,11 @@
         "undergraduate": "Davidson College, Davidson, NC",
         "graduateStudies": "",
         "medicalSchool": "University of Kentucky College of Medicine",
-        "residency": [
-            "Johns Hopkins Hospital, Baltimore, MD"
-        ],
+        "residency": "Johns Hopkins Hospital, Baltimore, MD",
         "fellowship": [
            
         ],
-        "internship": [
-          "Mercy Medical Cetner, Baltimore, MD"
-        ],
+        "internship": "Mercy Medical Cetner, Baltimore, MD",
         "boardCertifications": [
             
         ],
@@ -847,15 +805,11 @@
         "image": "/img/bios/Dr_Carl.png",
         "undergraduate": "Wayne State University, Detroit, MI",
         "medicalSchool": "University of Michigan Medical School, Ann Arbor, MI",
-        "residency": [
-            "University of Michigan Hospitals, Ann Arbor, MI"
-        ],
+        "residency": "University of Michigan Hospitals, Ann Arbor, MI",
         "fellowship": [
             
         ],
-        "internship": [
-          "University of Michigan Hospitals, Ann Arbor, MI"
-        ],
+        "internship": "University of Michigan Hospitals, Ann Arbor, MI",
         "boardCertifications": [
             "Board Certified, American Board of Anesthesiology (Non-Time Limited)",
             "Primary Recertification, Diplomat, American Board of Anesthesiology",
@@ -884,15 +838,9 @@
         "undergraduate": "Columbia School of Engineering and Applied Sciences, New York, New York",
         "graduate": "Icahn School of Medicine at Mount Sinai, New York, NY",
         "medicalSchool": "Icahn School of Medicine at Mount Sinai, New York, NY",
-        "residency": [
-            "Westchester Medical Center, Valhalla, NY"
-        ],
-        "fellowship": [
-            
-        ],
-        "internship": [
-          
-        ],
+        "residency": "Westchester Medical Center, Valhalla, NY",
+        "fellowship": "",
+        "internship": "",
         "boardCertifications": [
             "American Board of Anesthesiology"
         ],
@@ -914,15 +862,9 @@
         "undergraduate": " Georgia State University, Atlanta,Georgia",
         "graduate": "",
         "medicalSchool": "Case Western Reserve University School of Medicine, Cleveland, Ohio",
-        "residency": [
-            "Massachusetts General Hospital - Harvard Medicial School, Boston, MA"
-        ],
-        "fellowship": [
-            
-        ],
-        "internship": [
-          
-        ],
+        "residency": "Massachusetts General Hospital - Harvard Medicial School, Boston, MA",
+        "fellowship": "",
+        "internship": "",
         "boardCertifications": [
             
         ],
@@ -945,15 +887,9 @@
         "undergraduate": "Bachelor of Arts in Biology, Minor in Chemistry - University of Mississippi",
         "graduate": "",
         "medicalSchool": "Doctor of Medicine - University of Mississippi",
-        "residency": [
-            "Washington University in St. Louis"
-        ],
-        "fellowship": [
-            
-        ],
-        "internship": [
-          
-        ],
+        "residency": "Washington University in St. Louis",
+        "fellowship": "",
+        "internship": "",
         "boardCertifications": [
             "American Board of Anesthesiology",
             "BLS, ACLS, and PALS Certified"
