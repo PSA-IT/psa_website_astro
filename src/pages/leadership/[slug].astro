@@ -1,0 +1,118 @@
+---
+// One bio page per person in src/data/executives.js, e.g. /leadership/john-stephenson
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import { executives } from '../../data/executives.js';
+import physicians from '../../data/physicians.json';
+import { img, slugFor } from '../../lib/images.js';
+import { site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return executives.map((person) => ({
+    params: { slug: slugFor(person.name) },
+    props: { person },
+  }));
+}
+
+const { person } = Astro.props;
+const slug = slugFor(person.name);
+
+// For physicians, reuse the education and credentials already in physicians.json.
+const doc = physicians.find((p) => slugFor(p.name) === slug);
+const has = (v) => (Array.isArray(v) ? v.length > 0 : typeof v === 'string' ? v.trim() !== '' : !!v);
+const fields = doc
+  ? [
+      ['residency', 'Residency'],
+      ['fellowship', 'Fellowship'],
+      ['medicalSchool', 'Medical school'],
+      ['graduate', 'Graduate school'],
+      ['graduateStudies', 'Graduate studies'],
+      ['undergraduate', 'Undergraduate'],
+      ['mph', 'M.P.H.'],
+      ['internship', 'Internship'],
+      ['boardCertifications', 'Board certifications'],
+      ['professionalMemberships', 'Professional memberships'],
+      ['awards', 'Awards'],
+    ].filter(([key]) => has(doc[key]))
+  : [];
+const oa = doc?.otherActivities;
+const activities = Array.isArray(oa)
+  ? oa
+  : oa && typeof oa === 'object'
+    ? Object.values(oa).flat()
+    : [];
+---
+<Base title={`${person.name}, ${person.title}`} description={`${person.name}, ${person.title} at Physician Specialists in Anesthesia.`}>
+  <section class="section bio-page">
+    <div class="wrap">
+      <p class="back"><a href="/staff#executive-team">Back to our team</a></p>
+
+      <div class="bio-grid">
+        <Image
+          class="portrait"
+          src={img(person.photo)}
+          alt={`Portrait of ${person.name}`}
+          width={360}
+          height={360}
+          densities={[1, 2]}
+          fit="cover"
+          position="top"
+        />
+
+        <div class="measure">
+          <h1>{person.name}</h1>
+          <p class="title">{person.title}</p>
+
+          {person.bio?.length > 0 && person.bio.map((para) => <p>{para}</p>)}
+
+          {person.email && (
+            <p class="contact">
+              <a href={`mailto:${person.email}`}>{person.email}</a><br />
+              {site.phone}{person.ext && `, ext. ${person.ext}`}
+            </p>
+          )}
+
+          {fields.length > 0 && (
+            <>
+              <h2>Education and Credentials</h2>
+              <dl class="creds">
+                {fields.map(([key, label]) => (
+                  <>
+                    <dt>{label}</dt>
+                    <dd>{Array.isArray(doc[key]) ? <ul>{doc[key].map((v) => <li>{v}</li>)}</ul> : doc[key]}</dd>
+                  </>
+                ))}
+                {activities.length > 0 && (
+                  <>
+                    <dt>Other activities</dt>
+                    <dd><ul>{activities.map((v) => <li>{v}</li>)}</ul></dd>
+                  </>
+                )}
+              </dl>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .bio-page { background: var(--mist); }
+  .back { margin-bottom: 2rem; font-weight: 550; }
+  .bio-grid { display: grid; gap: 2rem 3.5rem; align-items: start; }
+  @media (min-width: 48rem) { .bio-grid { grid-template-columns: 16rem minmax(0, 1fr); } }
+  .bio-grid :global(.portrait) {
+    width: 100%; max-width: 16rem; aspect-ratio: 1; object-fit: cover; object-position: top;
+    border-radius: 50%; border: 4px solid var(--white);
+    box-shadow: 0 10px 24px -14px rgba(19, 38, 58, 0.45);
+  }
+  h1 { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 0.3rem; }
+  .title { font-size: 1.15rem; color: var(--blue); font-weight: 600; margin-bottom: 1.75rem; }
+  .contact { margin-top: 1.5rem; }
+  h2 { font-size: 1.4rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .creds dt { font-weight: 650; margin-top: 1rem; }
+  .creds dt:first-child { margin-top: 0; }
+  .creds dd { margin: 0.2rem 0 0; color: var(--muted); }
+  .creds ul { padding-left: 1.1rem; margin: 0; }
+</style>
