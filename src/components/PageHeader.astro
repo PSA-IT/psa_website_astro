@@ -1,20 +1,71 @@
 ---
-import Trace from './Trace.astro';
+// Title area at the top of every page except the homepage.
+// Background: a random photo from src/assets/img/interiors/ under a light overlay.
+// If that folder is empty, the header uses the plain light-blue background.
+import { getImage } from 'astro:assets';
+import { photoSets } from '../lib/photoSets.js';
+
 interface Props { title: string; intro?: string; }
 const { title, intro } = Astro.props;
+
+// Each background in two sizes: [phone, desktop].
+const backgrounds = await Promise.all(
+  photoSets.interiors.map(async (photo) => {
+    const small = await getImage({ src: photo, width: 960, format: 'webp' });
+    const large = await getImage({ src: photo, width: 1920, format: 'webp' });
+    return [small.src, large.src];
+  })
+);
+const hasPhoto = backgrounds.length > 0;
+const startStyle = hasPhoto
+  ? `--bg-sm: url('${backgrounds[0][0]}'); --bg-lg: url('${backgrounds[0][1]}');`
+  : undefined;
 ---
-<section class="page-header">
+<section
+  class:list={['page-header', { 'page-header--photo': hasPhoto }]}
+  style={startStyle}
+  data-backgrounds={hasPhoto ? JSON.stringify(backgrounds) : undefined}
+>
+  {hasPhoto && backgrounds.length > 1 && (
+    <script is:inline>
+      // Runs immediately (before the header is drawn) so there's no flash of a different photo.
+      (function () {
+        var header = document.currentScript.parentElement;
+        var list = JSON.parse(header.dataset.backgrounds);
+        var pick = list[Math.floor(Math.random() * list.length)];
+        header.style.setProperty('--bg-sm', "url('" + pick[0] + "')");
+        header.style.setProperty('--bg-lg', "url('" + pick[1] + "')");
+      })();
+    </script>
+  )}
   <div class="wrap">
     <h1>{title}</h1>
     {intro && <p class="lede measure">{intro}</p>}
     <slot />
   </div>
- 
 </section>
 
 <style>
   .page-header { background: var(--mist); padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: 2rem; position: relative; }
   .page-header h1 { max-width: 20ch; }
   .page-header .lede { margin-bottom: 0; }
-  .page-header :global(.page-trace) { height: 2.5rem; margin-top: 2rem; opacity: 0.55;}
+
+  /* Photo background: a light overlay keeps the dark text readable.
+     It's strongest on the left, where the text sits, and lets more of the photo show on the right. */
+  .page-header--photo {
+    background-color: var(--mist);
+    background-image:
+      linear-gradient(rgba(237, 243, 248, 0.9), rgba(237, 243, 248, 0.9)),
+      var(--bg-sm);
+    background-size: cover;
+    background-position: center;
+    padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+  @media (min-width: 48rem) {
+    .page-header--photo {
+      background-image:
+        linear-gradient(90deg, rgba(237, 243, 248, 0.96) 0%, rgba(237, 243, 248, 0.88) 45%, rgba(237, 243, 248, 0.55) 100%),
+        var(--bg-lg);
+    }
+  }
 </style>

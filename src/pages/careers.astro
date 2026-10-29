@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
+import RandomPhoto from '../components/RandomPhoto.astro';
 import { site } from '../data/site.js';
 
 const reasons = [
@@ -27,13 +28,16 @@ const reasons = [
     <div class="wrap split">
       <h2>Why choose PSA</h2>
       <div>
-        <div class="measure">
-          <p>
-            PSA delivers care under the anesthesia care team model. Salary and benefits are extremely
-            competitive, with very limited night on-call exposure, and there's an extraordinary
-            opportunity to gain experience in the insertion and use of invasive lines.
-          </p>
-          <p>Come join our team and become part of the leading anesthesia group in Atlanta.</p>
+        <div class="with-photo">
+          <div class="measure">
+            <p>
+              PSA delivers care under the anesthesia care team model. Salary and benefits are extremely
+              competitive, with very limited night on-call exposure, and there's an extraordinary
+              opportunity to gain experience in the insertion and use of invasive lines.
+            </p>
+            <p>Come join our team and become part of the leading anesthesia group in Atlanta.</p>
+          </div>
+          <RandomPhoto set="staff" />
         </div>
         <ul class="reasons">
           {reasons.map((r) => <li>{r}</li>)}
@@ -45,37 +49,51 @@ const reasons = [
   <section class="section section--mist">
     <div class="wrap split">
       <h2>In our team's words</h2>
-      <figure class="quote measure">
-        <blockquote>
-          "This job embodies what everyone desires in a job: a place where people are happy to go every
-          day, where people smile and help even without being asked, and where there is support,
-          guidance and compassion even in the most stressful situations. I love working here and I'm
-          proud to be part of such an amazing team."
-        </blockquote>
-        <figcaption>Anonymous employee survey response</figcaption>
-      </figure>
+      <div class="with-photo with-photo--left">
+        <figure class="quote measure">
+          <blockquote>
+            "This job embodies what everyone desires in a job: a place where people are happy to go every
+            day, where people smile and help even without being asked, and where there is support,
+            guidance and compassion even in the most stressful situations. I love working here and I'm
+            proud to be part of such an amazing team."
+          </blockquote>
+          <figcaption>Anonymous employee survey response</figcaption>
+        </figure>
+        <RandomPhoto set="staff" />
+      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap split">
       <h2>Employment inquiries</h2>
-      <div class="measure">
-        <p>
-          <a href={site.jobs} target="_blank" rel="noopener">View current open positions</a><br />
-          Email <a href={`mailto:${site.emails.recruiting}`}>{site.emails.recruiting}</a><br />
-          Phone <a href={site.phoneHref}>{site.phone}</a>, ext. 100<br />
-          Fax {site.fax}
-        </p>
-        <p class="muted small">
-          No agencies, please. Physician Specialists in Anesthesia, P.C. is an Equal Opportunity Employer.
-        </p>
+      <div class="with-photo">
+        <div class="measure">
+          <p>
+            <a href={site.jobs} target="_blank" rel="noopener">View current open positions</a><br />
+            Email <a href={`mailto:${site.emails.recruiting}`}>{site.emails.recruiting}</a><br />
+            Phone <a href={site.phoneHref}>{site.phone}</a>, ext. 100<br />
+            Fax {site.fax}
+          </p>
+          <p class="muted small">
+            No agencies, please. Physician Specialists in Anesthesia, P.C. is an Equal Opportunity Employer.
+          </p>
+        </div>
+        <RandomPhoto set="staff" />
       </div>
     </div>
   </section>
 </Base>
 
 <style>
+  /* Text beside a staff photo. Photo on the right by default; add with-photo--left to flip it. */
+  .with-photo { display: grid; gap: 2rem 3rem; align-items: center; }
+  @media (min-width: 56rem) {
+    .with-photo { grid-template-columns: minmax(0, 1fr) 20rem; }
+    .with-photo--left { grid-template-columns: 20rem minmax(0, 1fr); }
+    .with-photo--left > :global(.random-photo) { order: -1; }   /* photo moves left on desktop only */
+  }
+  @media (min-width: 56rem) { .with-photo :global(.random-photo) { max-width: 22rem; } }
   .cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 2rem 0 0; }
   .reasons { list-style: none; padding: 0; display: grid; gap: 1.5rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin: 2rem 0 0; }
   .reasons li { margin: 0; border-top: 2px solid var(--blue); padding-top: 0.9rem; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; line-height: 1.3; }

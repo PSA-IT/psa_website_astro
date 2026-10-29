@@ -1,0 +1,67 @@
+---
+// Shows one photo picked at random from a folder each time the page loads.
+//   <RandomPhoto set="staff" />   → a photo from src/assets/img/staff/
+// Several RandomPhotos on the same page never show the same photo twice
+// (unless the folder has fewer photos than spots). With no photos in the folder, nothing shows.
+import { getImage } from 'astro:assets';
+import { photoSets } from '../lib/photoSets.js';
+
+interface Props { set: 'staff' | 'interiors'; alt?: string; class?: string; }
+const { set, alt = 'Members of the PSA team', class: className = '' } = Astro.props;
+
+// Resize every photo in the folder ahead of time (two sizes, WebP).
+const options = await Promise.all(
+  (photoSets[set] ?? []).map(async (photo) => {
+    const small = await getImage({ src: photo, width: 640, format: 'webp' });
+    const large = await getImage({ src: photo, width: 1280, format: 'webp' });
+    return { src: small.src, srcset: `${small.src} 640w, ${large.src} 1280w` };
+  })
+);
+const first = options[0];
+---
+{first && (
+  <figure class:list={['random-photo', className]}>
+    <img
+      src={first.src}
+      srcset={first.srcset}
+      sizes="(min-width: 56rem) 22rem, 100vw"
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      data-photo-options={JSON.stringify(options)}
+    />
+  </figure>
+)}
+
+<script>
+  // Pick a random photo for each spot, avoiding repeats on the same page.
+  const used = new Set<string>();
+  document.querySelectorAll<HTMLImageElement>('img[data-photo-options]').forEach((img) => {
+    const options: { src: string; srcset: string }[] = JSON.parse(img.dataset.photoOptions || '[]');
+    if (options.length < 2) return;
+    const fresh = options.filter((o) => !used.has(o.src));
+    const pool = fresh.length ? fresh : options;
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    used.add(pick.src);
+    img.srcset = pick.srcset;
+    img.src = pick.src;
+  });
+</script>
+
+<style>
+  .random-photo { margin: 0; }
+  .random-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    background: var(--mist);
+    box-shadow: 0 1px 2px rgba(19, 38, 58, 0.06), 0 14px 30px -18px rgba(19, 38, 58, 0.45);
+  }
+  /* On phones and small tablets the photo sits below the text, so use a shorter landscape crop. */
+  @media (max-width: 56rem) {
+    .random-photo img { aspect-ratio: 3 / 2; }
+  }
+</style>
