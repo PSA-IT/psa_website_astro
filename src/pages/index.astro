@@ -3,13 +3,15 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Trace from '../components/Trace.astro';
 import { img } from '../lib/images.js';
-import { site } from '../data/site.js';
+import { site, nav } from '../data/site.js';
+
 
 const tasks = [
   { label: 'Pay your anesthesia bill', href: site.payBill, hint: 'Secure online payment', external: true },
   { label: 'Billing questions and medical records', href: '/pt_info#billing' },
   { label: 'Forms and consent documents', href: '/pt_info#forms' },
   { label: 'What to expect from anesthesia', href: '/pt_info#faq' },
+  { label: 'Careers with PSA', href: nav.label='careers'}
 ];
 
 const partners = [
