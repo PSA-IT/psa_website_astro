@@ -40,25 +40,32 @@ const monthYear = (iso) => {
   </PageHeader>
 
   <section id="workplace" class="section">
-    <div class="wrap split">
-      <h2>Best Places to Work</h2>
-      <div>
-        <p class="measure">
-          Atlanta Business Chronicle has recognized PSA as one of Atlanta's Best Places to Work, a
-          reflection of the culture we've built together. Our greatest strength is our people, and we
-          remain committed to supporting, valuing and investing in our employees every day.
-        </p>
-        <ul class="workplace">
-          {awards.companyAwards.map((a) => (
-            <li>
-              <Image src={img(a.src)} alt={a.alt} width={220} densities={[1, 2]} />
-              <span>{a.year}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+  <div class="wrap split">
+    <h2>Best Places to Work</h2>
+    <div>
+      <p class="measure">
+        Atlanta Business Chronicle has recognized PSA as one of Atlanta's Best Places to Work, a
+        reflection of the culture we've built together. Our greatest strength is our people, and we
+        remain committed to supporting, valuing and investing in our employees every day.
+      </p>
+      <ul class="workplace">
+        {awards.companyAwards.map((a) => (
+          <li>
+            <Image 
+              src={img(a.src)} 
+              alt={a.alt} 
+              width={220}
+              height={220}
+              densities={[1, 2]} 
+              class="award-img"
+            />
+            <span>{a.year}</span>
+          </li>
+        ))}
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
 
   <section id="physicians" class="section section--mist">
     <div class="wrap split">
@@ -132,10 +139,12 @@ const monthYear = (iso) => {
   .jump li { margin: 0; }
   .jump a { font-weight: 550; }
 
-  .workplace { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: 2rem 3rem; }
+  .workplace { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: 2rem 3rem; align-items:flex-end }
   .workplace li { margin: 0; display: grid; justify-items: center; gap: 0.75rem; }
-  .workplace :global(img) { width: auto; height: 11rem; object-fit: contain; }
+  .workplace :global(img) {width: 300px !important; height: 300px !important; object-fit: contain;  }
   .workplace span { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: var(--blue); }
+
+  .award-img {width: 220px; height: 220px;object-fit: contain; /* Prevents stretching if aspect ratios differ */}
 
   .orgs { display: grid; gap: 3rem; }
   @media (min-width: 64rem) { .orgs { grid-template-columns: 1fr 1fr; } }

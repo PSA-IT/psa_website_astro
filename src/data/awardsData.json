@@ -3,7 +3,7 @@
     { "src": "/img/award-bestplacework-med.png", "alt": "Best Places To Work 2023", "year": 2023 },
     { "src": "/img/award-bestplacework-2023-2024.png", "alt": "Best Places To Work 2024", "year": 2024 },
     { "src": "/img/2023(2).png", "alt": "Best Places To Work 2025", "year": 2025 },
-    { "src": "img/bptw-2026.svg", "alt": "Best Places to Work 2026", "year": 2026}
+    { "src": "img/Updated 2026.svg", "alt": "Best Places to Work 2026", "year": 2026}
   ],
 
   "employeeAwards": {
@@ -11,6 +11,7 @@
       "img": "img/award-castle-connolly-web-logo.png",
 
       "years": {
+          "2027": ["Nanhi Mitter, M.D."],
           "2026": ["Annie Yao, M.D.", "Stacy Krueth, M.D.", "David Apatov, M.D.", "Kurt Briesacher, M.D.", "Matthew Guidry, M.D.", "Kimberley Haluski, M.D.", "Patrick Harkins, M.D.",
                     "Julius Hamilton, M.D.", "Anne Hartney-Baucom, M.D.", "Darren Hyatt, M.D.", "Taylor Kahnke, M.D.", "Nanhi Mitter, M.D.", 
                     "David Moore, M.D.", "Lingesh Sivanesan, M.D.", "Jason York, M.D.", "Michelle Au, M.D."],
