@@ -9,7 +9,7 @@
 
 export const executiveGroupPhoto = {
   src: '/img/bios/exec_team.jpg',
-  alt: 'The PSA executive team',
+  alt: 'The PSA executive team - Dr. Stephenson, Dr. Hamilton, Dr. Moore and Lynn Epps',
 };
 
 export const executives = [
